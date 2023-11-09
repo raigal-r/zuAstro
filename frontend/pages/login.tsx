@@ -71,7 +71,7 @@ export default function Login() {
 
   useEffect(() => {
     if (logInContext.logInTheme === true) {
-      router.push("./personalInfo");
+      router.push("./createBirthChart");
     }
   }, [logInContext.logInTheme]);
 
@@ -91,7 +91,9 @@ export default function Login() {
           <button
             className="bg-[#653BA2] text-white font-medium text-xl rounded-3xl py-3 px-20 mt-4 text-center"
             onClick={() => {
-              logInContext.logInTheme = true
+              router.push("./createBirthChart");
+
+             //logInContext.logInTheme = true
             }}
           >
             Generate new Birth Chart and store it in my Zupass{" "}

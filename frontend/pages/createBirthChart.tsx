@@ -3,6 +3,7 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import GeoLocationComponent from "@/components/GeoLocation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,9 @@ export default function CreateBirthChart() {
         </div>
         <div>
           <h2>Place You Were Born</h2>
+        </div>
+        <div>
+         <GeoLocationComponent />
         </div>
 
         <Link href="/">
