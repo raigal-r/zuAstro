@@ -21,7 +21,7 @@ const Loading = () => {
   const logInContext = useContext(zuPassLogIn);
 
   useEffect(() => {
-    router.push('./login');
+    router.push("./login");
 
     if (!logInContext.logInTheme) {
       router.push("./login");
@@ -31,19 +31,18 @@ const Loading = () => {
   }, []);
 
   return (
-    <section className="h-[100vh] w-full flex justify-center items-center">
+    <section className="h-[100vh] w-full flex justify-center items-center bg-[#F7EEE1]">
       <div className="flex-col items-center text-center">
         <div
-          className="bg-center"
+          className="bg-center h-32"
           style={{
-            backgroundImage: `url('images/logo.png')`,
+            backgroundImage: `url('images/logo3.png')`,
             backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
           }}
-        >
-          Logo
-        </div>
-        <h1 className="text-lg">ZuAstro</h1>
-        <p>Connect People by Horoscope</p>
+        ></div>
+        <div>Connect You and Others with Astrology</div>
       </div>
     </section>
   );
