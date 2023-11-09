@@ -3,8 +3,15 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { createContext } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const zuPassLogIn = React.createContext({
+  logInTheme: false,
+  toggleLogInTheme: () => {},
+});
+
 
 export default function Login() {
   return (
