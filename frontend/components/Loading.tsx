@@ -2,29 +2,33 @@
 import React from "react";
 import Image from "next/image";
 
-import { useEffect, useContext } from "react";
-import { useRouter } from "next/router";
-import {zuPassLogIn} from "../pages/login"
+import {
+  constructZupassPcdProveAndAddRequestUrl,
+  openSignedZuzaluSignInPopup,
+} from "@pcd/passport-interface";
+import { ArgumentTypeName } from "@pcd/pcd-types";
+import { SemaphoreIdentityPCDPackage } from "@pcd/semaphore-identity-pcd";
+import { SemaphoreSignaturePCDPackage } from "@pcd/semaphore-signature-pcd";
+import { ZUPASS_URL } from "../hooks/zuPass/constants";
+import { sendZupassRequest } from "../hooks/zuPass/util";
 
+import Link from "next/link";
+import { useState, useEffect, useContext } from "react";
+import router from "next/router";
+import { zuPassLogIn } from "../pages/login";
 
 const Loading = () => {
-
   const logInContext = useContext(zuPassLogIn);
-  const router = useRouter();
-
-  
 
   useEffect(() => {
     router.push('./login');
 
     if (!logInContext.logInTheme) {
-      router.push('./login');
+      router.push("./login");
     } else {
-      router.push('./createBirthChart');
+      router.push("./personalInfo");
     }
   }, []);
-
- 
 
   return (
     <section className="h-[100vh] w-full flex justify-center items-center">
@@ -38,7 +42,7 @@ const Loading = () => {
         >
           Logo
         </div>
-        <h1>ZuAstro</h1>
+        <h1 className="text-lg">ZuAstro</h1>
         <p>Connect People by Horoscope</p>
       </div>
     </section>
