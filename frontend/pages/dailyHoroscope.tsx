@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
@@ -7,6 +7,35 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function DailyHoroscope() {
+
+  const [horoscopeData, setHoroscopeData] = useState<any | null>(null);
+
+    const useDailyHoroscopePrediction = async () => {
+      try {
+        const response = await fetch('https://divineapi.com/api/1.0/get_daily_horoscope.php', {
+          method: 'POST',
+          headers: {
+          },
+          body: new URLSearchParams({
+            api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
+            sign: "ARIES",
+            date: "2023-11-10",
+            timezone: "1",
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setHoroscopeData(data)
+          console.log(data);
+        } else {
+          throw new Error(`Failed to fetch data from the API. Status: ${response.status}`);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
   return (
     <section className="h-[100vh] w-full flex justify-center gap-10 ">
       <div className="flex-col w-full h-full items-start ">
@@ -44,11 +73,13 @@ export default function DailyHoroscope() {
               Main Page{" "}
             </button>
           </Link>
-          <Link href="/">
-            <button className="bg-aPurple text-white font-medium text-xl py-3 w-44 mt-4 text-center">
+          
+            <button 
+            className="bg-aPurple text-white font-medium text-xl py-3 w-44 mt-4 text-center"
+            onClick={useDailyHoroscopePrediction}
+            >
               Share with Group{" "}
             </button>
-          </Link>
         </div>
       </div>
     </section>

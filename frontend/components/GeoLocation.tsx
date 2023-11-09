@@ -44,7 +44,8 @@ export default GeoLocationComponent;
   
 
 export const useGeoLocation = () => {
- setKey(process.env.GEOCODEKEY ?? '');
+  
+ setKey('AIzaSyAaMcG537JOivMXCt0Z1RQ6lUm7BTrvzAI');
 
 
   const [coordinates, setCoordinates] = useState<{ lat: number; lng: number } | null>(null);
