@@ -1,4 +1,4 @@
-import { PCDOf, PCDPackage } from "../../pcd-types";
+import { PCDOf, PCDPackage } from "@pcd/pcd-types";
 import { useEffect, useState } from "react";
 
 export function useSerializedPCD<T extends PCDPackage>(

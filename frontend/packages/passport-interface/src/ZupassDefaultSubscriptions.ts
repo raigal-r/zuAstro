@@ -1,4 +1,4 @@
-import { PCDPermissionType } from "@pcd/pcd-collection";
+import { PCDPermissionType } from "../../pcd-collection/src/permissions";
 import { Feed, ZupassFeedIds } from "./SubscriptionManager";
 
 export const zupassDefaultSubscriptions: Record<

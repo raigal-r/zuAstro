@@ -13,6 +13,7 @@ import React from 'react';
 
 export const DailyHoroscopeComponent: React.FC = () => {
   const [signedMessage, setSignedMessage] = useState("1");
+  const [isActive, setIsActive] = useState(false);
 
   return (
     <div>

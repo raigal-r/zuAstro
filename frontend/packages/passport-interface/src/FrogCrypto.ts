@@ -1,4 +1,4 @@
-import { Biome, EdDSAFrogPCDPackage } from "@pcd/eddsa-frog-pcd";
+import { Biome, EdDSAFrogPCDPackage } from "../../eddsa-frog-pcd/src";
 import _ from "lodash";
 import { z } from "zod";
 import { Feed } from "./SubscriptionManager";
@@ -9,6 +9,13 @@ import { Feed } from "./SubscriptionManager";
  * User's lastFetchedAt is set to 0 if their score is less than this value
  */
 export const FROG_FREEROLLS = 2;
+
+/**
+ * The maximum score that a user can have
+ *
+ * Once a user reaches this score, they will no longer be able to earn more PCDs from this feed
+ */
+export const FROG_SCORE_CAP = 1000;
 
 /**
  * Map of configs for Biome(s) where PCDs can be issued from this feed

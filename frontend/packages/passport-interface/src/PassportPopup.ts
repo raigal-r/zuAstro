@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useState } from 'react';
+import { useEffect} from "react";
 
 /**
  * React hook that listens for PCDs and PendingPCDs from a Zupass popup window
  * using message passing and event listeners.
  */
 export function useZupassPopupMessages() {
-  const [pcdStr, setPCDStr] = useState("");
+  const [pcdStr, setPCDStr] = useState('');
   const [pendingPCDStr, setPendingPCDStr] = useState("");
 
   // Listen for PCDs coming back from the Zupass popup
