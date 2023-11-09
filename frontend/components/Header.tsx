@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export const Header = () => {
   return (
-    <header className="w-full text-black mb-10">
+    <header className="w-full text-black mb-7">
       <div
         className="bg-left h-14"
         style={{

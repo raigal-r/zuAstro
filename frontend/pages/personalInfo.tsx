@@ -10,7 +10,7 @@ export default function PersonalInfo() {
   return (
     <section className="h-[100vh] w-full flex justify-center ">
       <div className="flex-col items-center">
-        <h1 className="text-3xl mb-2 text-gray-600 text-center">0xDonald</h1>
+        <h1 className="text-3xl mb-1 text-gray-600 text-center">0xDonald</h1>
         <div
           className="bg-center h-72 m-7 "
           style={{
@@ -28,7 +28,7 @@ export default function PersonalInfo() {
           </Link>
         </div>
         <div className="mt-7">
-          <h2 className="mb-2 text-xl text-aGreen font-medium">
+          <h2 className="my-4 text-xl text-aGreen font-medium">
             Your POAP List
           </h2>
           <div className="w-full border-2 border-aGreen h-38 ">

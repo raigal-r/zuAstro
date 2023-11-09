@@ -24,12 +24,12 @@ export default function PersonalInfo() {
         ></div>
         <div className="grid grid-rows-2 w-full gap-2">
           <Link href="/">
-            <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-full text-center">
+            <button className="bg-aGreen text-white font-medium text-xl py-4 mt-4 w-full text-center">
               Save Your Birthchart
             </button>
           </Link>
           <Link href="/">
-            <button className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-full text-center">
+            <button className="bg-aPurple text-white font-medium text-xl py-4 mt-4 w-full text-center">
               Main Page
             </button>
           </Link>
