@@ -5,14 +5,15 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { createContext } from "react";
 import { useZuPassSignIn } from "@/hooks/zuPass/useZuPassSignIn";
+import dynamic from 'next/dynamic';
 
 import {
   constructZupassPcdProveAndAddRequestUrl,
   openSignedZuzaluSignInPopup
-} from "../../zupass/packages/passport-interface/src"
-import { ArgumentTypeName } from "../../zupass/packages/pcd-types/src"
-import { SemaphoreIdentityPCDPackage } from "../../zupass/packages/semaphore-identity-pcd/src"
-import { SemaphoreSignaturePCDPackage } from "../../zupass/packages/semaphore-signature-pcd/src";
+} from "@pcd/passport-interface"
+import { ArgumentTypeName } from "@pcd/pcd-types"
+import { SemaphoreIdentityPCDPackage } from "@pcd/semaphore-identity-pcd"
+import { SemaphoreSignaturePCDPackage } from "@pcd/semaphore-signature-pcd";
 import {  ZUPASS_URL } from "../hooks/zuPass/constants";
 import { sendZupassRequest } from "../hooks/zuPass/util";
 import router from "next/router";
@@ -28,19 +29,6 @@ export const zuPassSignValue = React.createContext({
   logInTheme: 'zodiacSign',
   toggleLogInTheme: () => {},
 });
-
-// async function zupassSignIn(originalSiteName: string) {
-//   try {
-//     await openSignedZuzaluSignInPopup(
-//       ZUPASS_URL,
-//       window.location.origin + "#/popup",
-//       originalSiteName
-//     );
-//     //logInContext.logInTheme = true ; // Assuming logInContext is a state setter function
-//   } catch (error) {
-//     console.error('Sign in failed:', error);
-//   }
-// }
 
 export default function Login() {
 
@@ -72,7 +60,7 @@ export default function Login() {
           <button 
             className="  bg-white text-black  py-3 px-20 text-center"
             onClick={() => {
-              //zupassSignIn("eth-pcd");
+              //zupassSignIn('');
               logInContext.logInTheme = true
             }}
             >

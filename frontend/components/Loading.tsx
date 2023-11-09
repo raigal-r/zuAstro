@@ -2,35 +2,27 @@
 import React from "react";
 import Image from "next/image";
 
-import {
-  constructZupassPcdProveAndAddRequestUrl,
-  openSignedZuzaluSignInPopup
-} from "../../zupass/packages/passport-interface"
-import { ArgumentTypeName } from "../../zupass/packages/pcd-types"
-import { SemaphoreIdentityPCDPackage } from "../../zupass/packages/semaphore-identity-pcd"
-import { SemaphoreSignaturePCDPackage } from "../../zupass/packages/semaphore-signature-pcd";
-import {  ZUPASS_URL } from "../hooks/zuPass/constants";
-import { sendZupassRequest } from "../hooks/zuPass/util";
-
-import Link from "next/link";
-import { useState,useEffect, useContext } from "react";
-import router from "next/router";
+import { useEffect, useContext } from "react";
+import { useRouter } from "next/router";
 import {zuPassLogIn} from "../pages/login"
-
 
 
 const Loading = () => {
 
   const logInContext = useContext(zuPassLogIn);
+  const router = useRouter();
+
   
 
   useEffect(() => {
+    router.push('./login');
+
     if (!logInContext.logInTheme) {
       router.push('./login');
     } else {
-      router.push('./personalInfo');
+      router.push('./createBirthChart');
     }
-  }, [logInContext]);
+  }, []);
 
  
 
