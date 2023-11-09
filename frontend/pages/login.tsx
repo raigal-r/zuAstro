@@ -96,8 +96,6 @@ export default function Login() {
           >
             Generate new Birth Chart and store it in my Zupass{" "}
           </button>
-      
-      
           <button
             className="bg-[#4F9171] text-white font-medium text-xl rounded-3xl py-3 px-20 mt-4 text-center"
             onClick={() => {
@@ -107,7 +105,6 @@ export default function Login() {
           >
             Get Birth Chart Stored in my ZuPass{" "}
           </button>
-       
       </div>
     </section>
   );
