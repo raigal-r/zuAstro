@@ -4,16 +4,16 @@ import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useZuPassSignIn } from "@/hooks/zuPass/useZuPassSignIn";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import {
   constructZupassPcdProveAndAddRequestUrl,
   openSignedZuzaluSignInPopup,
- //getWithoutProvingUrl,
-} from "../packages/passport-interface/src"
-import { ArgumentTypeName } from "../packages/pcd-types/src"
-import { SemaphoreIdentityPCDPackage } from "../packages/semaphore-identity-pcd/src"
+  //getWithoutProvingUrl,
+} from "../packages/passport-interface/src";
+import { ArgumentTypeName } from "../packages/pcd-types/src";
+import { SemaphoreIdentityPCDPackage } from "../packages/semaphore-identity-pcd/src";
 import { SemaphoreSignaturePCDPackage } from "../packages/semaphore-signature-pcd/src";
-import {  ZUPASS_URL } from "../hooks/zuPass/constants";
+import { ZUPASS_URL } from "../hooks/zuPass/constants";
 //import { sendZupassRequest } from "../hooks/zuPass/util";
 import router from "next/router";
 import { CollapsableCode } from "@/components/Core";
@@ -22,7 +22,6 @@ import { CollapsableCode } from "@/components/Core";
 const inter = Inter({ subsets: ["latin"] });
 
 export function useZupassPopupMessages() {
-
   const [pcdStr, setPCDStr] = useState("");
   const [pendingPCDStr, setPendingPCDStr] = useState("");
 
@@ -56,7 +55,6 @@ export const zuPassSignValue = React.createContext({
 });
 
 export default function Login() {
-
   const logInContext = useContext(zuPassLogIn);
   const signValueCOntext = useContext(zuPassLogIn);
   const [zupassPCDStr] = useZupassPopupMessages();
@@ -75,9 +73,8 @@ export default function Login() {
     }
   }, [logInContext.logInTheme]);
 
- 
   return (
-    <section className="h-[100vh] w-full flex justify-center items-center bg-[#F7EEE1]">
+    <section className="h-[100vh] w-[100%] flex justify-center items-center bg-[#F7EEE1]">
       <div className="flex-col items-center text-center">
         <div
           className="bg-center h-32"
@@ -88,25 +85,27 @@ export default function Login() {
             backgroundSize: "contain",
           }}
         ></div>
+        <div className="grid grid-rows-2 w-full gap-4 mt-7">
           <button
-            className="bg-[#653BA2] text-white font-medium text-xl rounded-3xl py-3 px-20 mt-4 text-center"
+            className="bg-aGreen text-white font-medium text-xl rounded-3xl py-[1.4rem] w-full px-12 mt-4 text-center"
             onClick={() => {
               router.push("./createBirthChart");
 
-             //logInContext.logInTheme = true
-            }}
-          >
-            Generate new Birth Chart and store it in my Zupass{" "}
-          </button>
-          <button
-            className="bg-[#4F9171] text-white font-medium text-xl rounded-3xl py-3 px-20 mt-4 text-center"
-            onClick={() => {
-              getProofWithoutProving()
               //logInContext.logInTheme = true
             }}
           >
-            Get Birth Chart Stored in my ZuPass{" "}
+            Generate New Birth Chart
           </button>
+          <button
+            className="bg-aPurple text-white font-medium text-xl rounded-3xl py-[1.4rem] w-full px-12 mt-4 text-center"
+            onClick={() => {
+              getProofWithoutProving();
+              //logInContext.logInTheme = true
+            }}
+          >
+            Get My Birth Chart{" "}
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -116,7 +115,7 @@ export enum PCDRequestType {
   Get = "Get",
   GetWithoutProving = "GetWithoutProving",
   Add = "Add",
-  ProveAndAdd = "ProveAndAdd"
+  ProveAndAdd = "ProveAndAdd",
 }
 
 export interface PCDRequest {
@@ -136,15 +135,17 @@ export function getWithoutProvingUrl(
   const req: PCDGetWithoutProvingRequest = {
     type: PCDRequestType.GetWithoutProving,
     pcdType,
-    returnUrl
+    returnUrl,
   };
   const encReq = encodeURIComponent(JSON.stringify(req));
   return `${zupassClientUrl}#/get-without-proving?request=${encReq}`;
 }
 
 export function sendZupassRequest(proofUrl: string) {
-  const popupUrl = `${window.location.origin}/popup?proofUrl=${encodeURIComponent(proofUrl)}`;
-  console.log('popupUrl', popupUrl)
+  const popupUrl = `${
+    window.location.origin
+  }/popup?proofUrl=${encodeURIComponent(proofUrl)}`;
+  console.log("popupUrl", popupUrl);
   window.open(popupUrl, "_blank", "width=450,height=600,top=100,popup");
 }
 
@@ -155,6 +156,6 @@ function getProofWithoutProving() {
     `${window.location.origin}/popup`,
     SemaphoreSignaturePCDPackage.name
   );
-  console.log(window.location.origin)
+  console.log(window.location.origin);
   sendZupassRequest(url);
 }
