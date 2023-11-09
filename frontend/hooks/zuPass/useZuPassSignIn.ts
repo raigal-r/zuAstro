@@ -13,20 +13,8 @@ import {
 
   export const useZuPassSignIn = (argument: string) => {
 
-    const logInContext = useContext(zuPassLogIn);
 
-    async function zupassSignIn(originalSiteName: string) {
-      try {
-        await openSignedZuzaluSignInPopup(
-          ZUPASS_URL,
-          window.location.origin + "#/popup",
-          originalSiteName
-        );
-        logInContext.logInTheme = true ; // Assuming logInContext is a state setter function
-      } catch (error) {
-        console.error('Sign in failed:', error);
-      }
-    }    
+      
 
     zupassSignIn(argument);
   }
