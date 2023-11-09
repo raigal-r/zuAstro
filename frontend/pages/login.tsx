@@ -154,15 +154,15 @@ export function getWithoutProvingUrl(
 }
 
 export function sendZupassRequest(proofUrl: string) {
-  const popupUrl = `/#/popup?proofUrl=${encodeURIComponent(proofUrl)}`;
+  const popupUrl = `${window.location.origin}/#/popup?proofUrl=${encodeURIComponent(proofUrl)}`;
   console.log('popupUrl', popupUrl)
   window.open(popupUrl, "_blank", "width=450,height=600,top=100,popup");
 }
 
 function getProofWithoutProving() {
   const url = getWithoutProvingUrl(
-    //ZUPASS_URL,
-    "https://zupass.org/",
+    ZUPASS_URL,
+    //"https://zupass.org/",
     window.location.origin + "#/popup",
     SemaphoreSignaturePCDPackage.name
   );

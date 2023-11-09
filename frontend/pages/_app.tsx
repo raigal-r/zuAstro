@@ -5,12 +5,7 @@ import { ZupassPopupRedirect } from './login';
 
 
 export default function App({ Component, pageProps }: AppProps) {
-    
-  const router = useRouter();
 
-  if (router.pathname === "/popup") {
-    return <ZupassPopupRedirect />
-  }
   return <Component {...pageProps} />
   
 }
