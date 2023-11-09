@@ -11,26 +11,14 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children, title }) => {
   const path = usePathname();
-  const styleBg =
-    path === "/"
-      ? {
-          // backgroundImage: `url('/images/bg.svg')`,
-          // height: "full",
-          // backgroundPosition: "center",
-        }
-      : undefined;
 
   return (
-    <div
-      className="flex-col items-center md:m-8 md:p-1  border-[#252525]  md:border md:rounded-3xl overflow-hidden"
-      style={styleBg}
-    >
+    <div className="bg-[#F7EEE1] w-full h-[100vh] p-6">
       <Head>
         <title>{title}</title>
       </Head>
-      <Header />
-
-      {/* {showFooter && <Footer />} */}
+      {path === "/login" ? undefined : <Header />}
+      {children}
     </div>
   );
 };

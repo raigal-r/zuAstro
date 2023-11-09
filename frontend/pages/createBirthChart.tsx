@@ -18,10 +18,7 @@ export default function CreateBirthChart() {
           <h2>Place You Were Born</h2>
         </div>
 
-        <Link
-          href="/"
-          className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500  text-white mt-3"
-        >
+        <Link href="/">
           <button className="  bg-white text-black  py-3 px-20 text-center">
             Create BirthChart
           </button>

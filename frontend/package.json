@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.2",
     "@pcd/eslint-config-custom": "^0.8.0",
     "@pcd/ethereum-group-pcd": "^0.2.0",
     "@pcd/ethereum-ownership-pcd": "^0.8.0",
@@ -21,7 +22,9 @@
     "@pcd/semaphore-signature-pcd": "^0.8.0",
     "@pcd/tsconfig": "^0.8.0",
     "@pcd/webauthn-pcd": "^0.8.0",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
     "circomlibjs": "^0.1.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -31,8 +34,10 @@
     "react": "^18",
     "react-day-picker": "^8.9.1",
     "react-dom": "^18",
+    "react-hook-form": "^7.48.2",
     "tailwind-merge": "^2.0.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.23.3",
