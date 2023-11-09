@@ -5,16 +5,16 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { createContext } from "react";
 import { useZuPassSignIn } from "@/hooks/zuPass/useZuPassSignIn";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
 import {
   constructZupassPcdProveAndAddRequestUrl,
-  openSignedZuzaluSignInPopup
-} from "@pcd/passport-interface"
-import { ArgumentTypeName } from "@pcd/pcd-types"
-import { SemaphoreIdentityPCDPackage } from "@pcd/semaphore-identity-pcd"
+  openSignedZuzaluSignInPopup,
+} from "@pcd/passport-interface";
+import { ArgumentTypeName } from "@pcd/pcd-types";
+import { SemaphoreIdentityPCDPackage } from "@pcd/semaphore-identity-pcd";
 import { SemaphoreSignaturePCDPackage } from "@pcd/semaphore-signature-pcd";
-import {  ZUPASS_URL } from "../hooks/zuPass/constants";
+import { ZUPASS_URL } from "../hooks/zuPass/constants";
 import { sendZupassRequest } from "../hooks/zuPass/util";
 import router from "next/router";
 
@@ -40,12 +40,12 @@ export default function Login() {
   }, [logInContext.logInTheme]);
 
   return (
-    <section className="h-[100vh] w-full flex justify-center items-center bg-[#291432]">
+    <section className="h-[100vh] w-full flex justify-center items-center bg-[#F7EEE1]">
       <div className="flex-col items-center text-center">
         <div
           className="bg-center h-32"
           style={{
-            backgroundImage: `url('images/logo.png')`,
+            backgroundImage: `url('images/logo3.png')`,
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
@@ -57,10 +57,10 @@ export default function Login() {
           className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500  text-white mt-3"
         >
           <button
-            className="bg-[#4F9171] text-white font-medium text-xl rounded-3xl py-3 px-20 mt-4 text-center"
+            className="bg-[#653BA2] text-white font-medium text-xl rounded-3xl py-3 px-20 mt-4 text-center"
             onClick={() => {
               //zupassSignIn("eth-pcd");
-              logInContext.logInTheme = true
+              logInContext.logInTheme = true;
             }}
           >
             Connect Zupass{" "}
