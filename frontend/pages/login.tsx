@@ -88,11 +88,6 @@ export default function Login() {
             backgroundSize: "contain",
           }}
         ></div>
-        {/* <h1 className="text-5xl text-white mt-10 ">ZuAstro</h1> */}
-        {/* <Link
-          href="/"
-          className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500  text-white mt-3"
-        >
           <button
             className="bg-[#653BA2] text-white font-medium text-xl rounded-3xl py-3 px-20 mt-4 text-center"
             onClick={() => {
@@ -101,12 +96,8 @@ export default function Login() {
           >
             Generate new Birth Chart and store it in my Zupass{" "}
           </button>
-        </Link> */}
-        {/* <Link
-          // { path: "popup", element: <ZupassPopupRedirect /> },
-          href= "popup"
-          className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500  text-white mt-3"
-        > */}
+      
+      
           <button
             className="bg-[#4F9171] text-white font-medium text-xl rounded-3xl py-3 px-20 mt-4 text-center"
             onClick={() => {
@@ -116,8 +107,7 @@ export default function Login() {
           >
             Get Birth Chart Stored in my ZuPass{" "}
           </button>
-          {/* {formatted && <CollapsableCode code={formatted} />} */}
-        {/* </Link> */}
+       
       </div>
     </section>
   );
@@ -169,67 +159,3 @@ function getProofWithoutProving() {
   console.log(window.location.origin)
   sendZupassRequest(url);
 }
-
-// export function useZupassPopupSetup() {
-//   // Usually this page redirects immediately. If not, show an error.
-//   const [error, setError] = useState("");
-
-//   useEffect(() => {
-//     if (window.opener == null) {
-//       setError("Not a popup window");
-//       return;
-//     }
-
-//     let params;
-
-//     // Hash routing is commonly used in web applications to enable client-side
-//     // routing without requiring server-side configuration, typically single-page applications.
-//     // Without hash routing, the server should always serve the same index.html file for any route.
-//     // Some providers, like Github Pages, don't provide this feature.
-//     // To read the parameters of a URL with hash routing, the hash must first be removed.
-//     if (window.location.href.includes(window.location.origin + "/#/")) {
-//       const url = new URL(window.location.href.replace("#", ""));
-
-//       params = url.searchParams;
-//     } else {
-//       params = new URLSearchParams(window.location.search);
-//     }
-
-//     const paramsProofUrl = params.get("proofUrl");
-//     const paramsProof = params.get("proof");
-//     const paramsEncodingPendingPCD = params.get("encodedPendingPCD");
-//     const finished = params.get("finished");
-
-//     // First, this page is window.open()-ed. Redirect to Zupass.
-//     if (paramsProofUrl != null) {
-//       window.location.href = paramsProofUrl;
-//     } else if (finished) {
-//       // Later, Zupass redirects back with a result. Send it to our parent.
-//       if (paramsProof != null) {
-//         window.opener.postMessage({ encodedPCD: paramsProof }, "*");
-//       }
-
-//       window.close();
-//       setTimeout(() => {
-//         setError("Finished. Please close this window.");
-//       }, 1000 * 3);
-//     } else if (paramsEncodingPendingPCD != null) {
-//       // Later, Zupass redirects back with a encodedPendingPCD. Send it to our parent.
-//       window.opener.postMessage(
-//         { encodedPendingPCD: paramsEncodingPendingPCD },
-//         "*"
-//       );
-//       window.close();
-//       setTimeout(() => {
-//         setError("Finished. Please close this window.");
-//       }, 1000 * 3);
-//     }
-//   }, []);
-
-//   return error;
-// }
-
-// export function ZupassPopupRedirect() {
-//   const error = useZupassPopupSetup();
-//   return <div>{error}</div>;
-// }
