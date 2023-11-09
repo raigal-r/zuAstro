@@ -5,10 +5,10 @@ import Image from "next/image";
 import {
   constructZupassPcdProveAndAddRequestUrl,
   openSignedZuzaluSignInPopup
-} from "../zupass/packages/passport-interface"
-import { ArgumentTypeName } from "../zupass/packages/pcd-types"
-import { SemaphoreIdentityPCDPackage } from "../zupass/packages/semaphore-identity-pcd"
-import { SemaphoreSignaturePCDPackage } from "../zupass/packages/semaphore-signature-pcd";
+} from "../../zupass/packages/passport-interface"
+import { ArgumentTypeName } from "../../zupass/packages/pcd-types"
+import { SemaphoreIdentityPCDPackage } from "../../zupass/packages/semaphore-identity-pcd"
+import { SemaphoreSignaturePCDPackage } from "../../zupass/packages/semaphore-signature-pcd";
 import {  ZUPASS_URL } from "../hooks/zuPass/constants";
 import { sendZupassRequest } from "../hooks/zuPass/util";
 

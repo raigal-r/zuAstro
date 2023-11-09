@@ -1,7 +1,0 @@
-{
-  "extends": ["@pcd/eslint-config-custom"],
-  "root": true,
-  "rules": {
-    "no-undef": "off"
-  }
-}
