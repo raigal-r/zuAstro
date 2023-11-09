@@ -32,7 +32,7 @@ export default function PoapDetail() {
             attributed to an unknown typesetter in the 15th century who is.
           </div>
         </div>
-        <div className="grid grid-cols-2 w-full">
+        <div className="grid grid-cols-2 w-full gap-2">
           <Link href="/">
             <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
               Main Page

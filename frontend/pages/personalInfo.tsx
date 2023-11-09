@@ -62,15 +62,15 @@ export default function PersonalInfo() {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 w-full">
+        <div className="grid grid-cols-2 w-full gap-2">
           <Link href="/">
             <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
-              Social Graph{" "}
+              Social Graph
             </button>
           </Link>
           <Link href="/">
             <button className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-44 text-center">
-              Visit Telegram{" "}
+              Visit Group
             </button>
           </Link>
         </div>
