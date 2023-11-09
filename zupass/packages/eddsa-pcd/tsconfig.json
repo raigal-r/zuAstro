@@ -1,8 +1,0 @@
-{
-  "extends": "@pcd/tsconfig/ts-library.json",
-  "compilerOptions": {
-    "lib": ["dom"]
-  },
-  "include": [".", "./test"],
-  "exclude": ["dist", "build", "node_modules"]
-}

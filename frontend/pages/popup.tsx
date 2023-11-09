@@ -10,7 +10,6 @@ export function useZupassPopupSetup() {
         setError("Not a popup window");
         return;
       }
-  
       let params;
   
       // Hash routing is commonly used in web applications to enable client-side
@@ -22,6 +21,7 @@ export function useZupassPopupSetup() {
         const url = new URL(window.location.href.replace("#", ""));
   
         params = url.searchParams;
+        console.log("paramns:", params)
       } else {
         params = new URLSearchParams(window.location.search);
       }
