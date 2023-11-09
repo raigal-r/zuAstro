@@ -9,10 +9,10 @@ import { useZuPassSignIn } from "@/hooks/zuPass/useZuPassSignIn";
 import {
   constructZupassPcdProveAndAddRequestUrl,
   openSignedZuzaluSignInPopup
-} from "../../zupass/packages/passport-interface/src"
-import { ArgumentTypeName } from "../../zupass/packages/pcd-types/src"
-import { SemaphoreIdentityPCDPackage } from "../../zupass/packages/semaphore-identity-pcd/src"
-import { SemaphoreSignaturePCDPackage } from "../../zupass/packages/semaphore-signature-pcd/src";
+} from "../zupass/packages/passport-interface/src"
+import { ArgumentTypeName } from "../zupass/packages/pcd-types/src"
+import { SemaphoreIdentityPCDPackage } from "../zupass/packages/semaphore-identity-pcd/src"
+import { SemaphoreSignaturePCDPackage } from "../zupass/packages/semaphore-signature-pcd/src";
 import {  ZUPASS_URL } from "../hooks/zuPass/constants";
 import { sendZupassRequest } from "../hooks/zuPass/util";
 import router from "next/router";
@@ -72,7 +72,7 @@ export default function Login() {
           <button 
             className="  bg-white text-black  py-3 px-20 text-center"
             onClick={() => {
-              zupassSignIn("zu-astral");
+              //zupassSignIn("eth-pcd");
               logInContext.logInTheme = true
             }}
             >
