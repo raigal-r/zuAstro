@@ -13,6 +13,8 @@ export default function CreateNFC() {
         <p className="text-3xl mb-2 text-gray-600 text-left ">
           Create Your NFC
         </p>
+
+        {/* need to fix layout */}
         <form className="flex-col w-full">
           <label> Nick Name</label>
           <input placeholder="Nick Name" />
