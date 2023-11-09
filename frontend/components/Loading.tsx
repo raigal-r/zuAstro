@@ -29,7 +29,6 @@ const Loading = () => {
       router.push('./login');
     } else {
       router.push('./personalInfo');
-      
     }
   }, [logInContext]);
 
