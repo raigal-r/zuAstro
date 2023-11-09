@@ -52,10 +52,7 @@ export default function Login() {
           }}
         ></div>
         {/* <h1 className="text-5xl text-white mt-10 ">ZuAstro</h1> */}
-        <Link
-          href="/"
-          className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500  text-white mt-3"
-        >
+        <Link href="/">
           <button
             className="bg-[#653BA2] text-white font-medium text-xl rounded-3xl py-3 px-20 mt-4 text-center"
             onClick={() => {

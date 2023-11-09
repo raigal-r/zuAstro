@@ -1,28 +1,27 @@
 import React from "react";
 
 import { Inter } from "next/font/google";
-
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function createNFC() {
+export default function CreateNFC() {
   return (
-    <section className="h-[100vh] w-full flex justify-center items-center">
-      <div className="flex-col items-center text-center">
-        <h1>Create Your NFC</h1>
+    <section className="h-[100vh] w-full flex justify-center ">
+      <div className="flex-col items-center">
         <div className="flex-col">
-          <input placeholder="Nick Name" />
-          <input placeholder="Telegram Handle" />
+          <p className="text-3xl mb-2 text-gray-600">Create Your NFC</p>
         </div>
-        <Link
-          href="/"
-          className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-primary-500 to-secondary-500  text-white mt-3"
-        >
-          <button className="  bg-white text-black  py-3 px-20 text-center">
-            Create NFC{" "}
-          </button>
-        </Link>
+        <div></div>
+
+        <div className="grid grid-cols-2 w-full gap-4">
+          <Link href="/">
+            <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
+              Create NFC
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );
