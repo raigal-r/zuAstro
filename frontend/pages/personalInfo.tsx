@@ -47,17 +47,19 @@ export default function PersonalInfo() {
     const card = cardPubKeys.find(card => card.pubKeySlot1 === pubKey);
 
     if (card) {
-      if (card.emoji == "💾") {
+      if (card.emoji === "💾") {
         setString2('taurus')
-        router.push("./poapDetail")
-      } else if (card.emoji == "🖱️"){
+      } else if (card.emoji === "🖱️"){
         setString2('scorpio')
-        router.push("./poapDetail")
-      } else if (card.emoji == "🔧") {
+      } else if (card.emoji === "🔧") {
         setString2('aries')
-        router.push("./poapDetail")
+      } else {
+
       }
-      console.log(card.emoji); // This will print the emoji of the card with the matching pubKeyJub
+      console.log(card.emoji);
+      console.log(string2) // This will print the emoji of the card with the matching pubKeyJub
+      router.push("./poapDetail")
+
     } else {
       console.log('No card found with the provided pubKey');
     }
