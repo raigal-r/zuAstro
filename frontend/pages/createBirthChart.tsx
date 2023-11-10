@@ -13,6 +13,17 @@ import Link from "next/link";
 import GeoLocationComponent from "@/components/GeoLocation";
 import router from "next/router";
 import { SignContext } from "./_app";
+// import ReactSVG from "react-svg";
+// import InlineSVG from "react-inlinesvg";
+
+interface SvgImageProps {
+  src: string;
+  alt?: string;
+}
+
+export const SvgImage: React.FC<SvgImageProps> = ({ src, alt = "" }) => {
+  return <img src={src} alt={alt} />;
+};
 
 import TextInput from "@/components/TextInput"; // Import the reusable text input component
 import { setMonth } from "date-fns";
@@ -37,6 +48,8 @@ export default function CreateBirthChart() {
   const [signedMessage, setSignedMessage] = useState("1");
 
   const { string, setString } = React.useContext(SignContext);
+
+  const [isSVG, setIsSVG] = useState(string);
 
   useEffect(() => {
     setString(signedMessage);
@@ -93,16 +106,10 @@ export default function CreateBirthChart() {
 
       if (response.ok) {
         const data = await response.json();
-        setAstroData(data.svg);
-        console.log(data);
-        console.log("birth chart response:", data.svg); //The response it's a svg data
-        // response:
-        //   {
-        //     "success": 1,
-        //     "data": [
-        //         "svg": "svg code"
-        //     ]
-        // }
+        console.log("Response data:", data); // Add this line
+        setAstroData(data);
+        setIsSVG(data.data[0].svg);
+        console.log("birth chart response:", data); //The response it's a svg data
       } else {
         throw new Error(
           `Failed to fetch data from the API. Status: ${response.status}`
