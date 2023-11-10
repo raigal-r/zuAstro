@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { ArgsOf, PCDPackage, SerializedPCD } from "@pcd/pcd-types";
 import { ArgumentTypeName } from "@pcd/pcd-types";
 import {
@@ -12,16 +12,29 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import GeoLocationComponent from "@/components/GeoLocation";
 import router from "next/router";
+import {SignContext} from "./_app"
+
 
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function CreateBirthChart() {
 
+
   const [astroData, setAstroData] = useState<{ success: number, data: { svg: string }[] } | null>(null);
   const [signReportData, setSignReportData] = useState<any | null>(null); // Adjust the type according to the response data structure
   const [signedMessage, setSignedMessage] = useState("1");
 
+  const { string, setString } = React.useContext(SignContext);
+
+  useEffect(() => {
+    setString(signedMessage);
+    console.log('string', string)
+  }, [signedMessage]);
+
+  useEffect(() => {
+    console.log('string', string);
+  }, [string]);
 
 
   const createBirthChartImage = async () => {
@@ -69,6 +82,7 @@ export default function CreateBirthChart() {
 
   const createBirthChartSignReport = async () => {
 
+
     try {
       const response = await fetch('https://astroapi-4.divineapi.com/western-api/v1/general-sign-report/sun', {
         method: 'POST',
@@ -96,6 +110,9 @@ export default function CreateBirthChart() {
         const data = await response.json();
         setSignReportData(data);
         setSignedMessage(data.data.sign_name)
+        const signedMessage = data.data.sign_name;
+        setString(signedMessage)
+        console.log(signedMessage)
         console.log('Sign Data:', data.data.sign_name)
       } else {
         throw new Error(`Failed to fetch data from the API. Status: ${response.status}`);
@@ -103,6 +120,8 @@ export default function CreateBirthChart() {
     } catch (error) {
       console.error('Error:', error);
     }
+
+
 
   }
   return (
@@ -151,7 +170,9 @@ export default function CreateBirthChart() {
           <div className="grid grid-rows-2 w-full gap-2">
             <button 
             className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-full text-center"
+            //onClick={() => addSignatureProofPCD('libra')}>
             onClick={() => addSignatureProofPCD(signedMessage)}>
+
               Save Your Birthchart
             </button>
         
@@ -263,7 +284,7 @@ async function zupassSignIn(originalSiteName: string) {
   openSignedZuzaluSignInPopup(
     //ZUPASS_URL,
     "https://zupass.org/",
-    window.location.origin + "/popup",
+    `${window.location.origin}/popup`,
     originalSiteName
   );
 }
@@ -310,7 +331,7 @@ async function addSignatureProofPCD(messageToSign: string) {
   >(
     //ZUPASS_URL,
     "https://zupass.org/",
-    window.location.origin + "/popup",
+    `${window.location.origin}/popup`,
     SemaphoreSignaturePCDPackage.name,
     {
       identity: {
@@ -333,12 +354,5 @@ async function addSignatureProofPCD(messageToSign: string) {
   sendZupassRequest(proofUrl);
 }
 
-function addHoroscopePCD() {
-
-  const [signedMessage, setSignedMessage] = useState("1");
-  const [isActive, setIsActive] = useState(false);
-
-
-}
 
 

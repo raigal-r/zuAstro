@@ -18,20 +18,17 @@ import { ZUPASS_URL } from "../hooks/zuPass/constants";
 import router from "next/router";
 import { CollapsableCode } from "@/components/Core";
 //import { CollapsableCode, HomeLink } from "../../components/Core";
+import { SignContext } from './_app';
+
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const signContext = React.createContext({
-  string: "",
-  setString: (value: string) => {},
-});
 
 
 export function useZupassPopupMessages() {
   const [pcdStr, setPCDStr] = useState("");
   const [pendingPCDStr, setPendingPCDStr] = useState("");
   const [signString, setSignString] = useState("");
-  const { setString } = useContext(signContext);
+  const { setString } = useContext(SignContext);
 
   // Listen for PCDs coming back from the Zupass popup
   useEffect(() => {

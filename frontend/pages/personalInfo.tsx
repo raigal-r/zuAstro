@@ -3,7 +3,7 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {signContext} from "./login"
+import {SignContext} from "./_app"
 import router from "next/router";
 
 
@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function PersonalInfo() {
 
-  const { string, setString } = React.useContext(signContext);
+  const { string, setString } = React.useContext(SignContext);
   
   return (
     <section className="h-[100vh] w-full flex justify-center ">

@@ -4,19 +4,20 @@ import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import router from "next/router";
-import {signContext} from "./login"
+import { SignContext } from './_app';
 
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function DailyHoroscope() {
 
-  const { string, setString } = React.useContext(signContext);
+  const { string, setString } = React.useContext(SignContext);
 
 
   const [horoscopeData, setHoroscopeData] = useState<any | null>(null);
 
     const useDailyHoroscopePrediction = async () => {
+      console.log('string', string)
       try {
         const response = await fetch('https://divineapi.com/api/1.0/get_daily_horoscope.php', {
           method: 'POST',
@@ -24,7 +25,7 @@ export default function DailyHoroscope() {
           },
           body: new URLSearchParams({
             api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
-            sign: string,
+            sign: string.toLowerCase(),
             date: "2023-11-10",
             timezone: "1",
           }),
