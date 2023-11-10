@@ -1,10 +1,10 @@
 # ZuAstro
 
-** morning - NFC cards**
+** morning - NFC cards** (Andrew) - 3 cards + variable(sign / emoji)
 
 ## Todos
 
-- [x] font family
+- [x] font family (morning) - joy
 - [ ] button padding
 
 /loading
@@ -15,20 +15,25 @@
 
 /login
 
-/createBirthCahrt
+/createBirthCahrt => morning(joy)
 
 - [ ] form calendar - day, month, year
 - [ ] Fix UI
+- [ ] Success Toast
 
-/successBirthChart
+/successBirthChart => morning(joy)
 
-- [ ] download function
+- [ ] download feature (option)
+- [ ] Toast Message
 
 /personalInfo
 
 /dailyHoroscope
 
 /poapDetail
+
+- [ ] wallet connect
+- [ ] generate POAP
 
 /createNFC
 
@@ -46,6 +51,6 @@ Recording Demo
 
 - [ ]
 
-Presentation Deck
+Presentation Deck (afternoon - joy)
 
 - [ ]
