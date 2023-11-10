@@ -15,6 +15,9 @@ module.exports = {
         "2xl": "1400px",
       },
     },
+
+    //  @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;300;400;600;700&display=swap');
+
     extend: {
       colors: {
         aPurple: "#653BA2",
@@ -29,6 +32,9 @@ module.exports = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+        },
+        fontFamily: {
+          josefin: ["Josefin", "Sans"],
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",

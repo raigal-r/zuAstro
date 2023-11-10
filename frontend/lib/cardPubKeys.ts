@@ -23,7 +23,7 @@ export const cardPubKeys: CardPubKey[] = [
     pubKeyJub:
       "0412523e60d96846642195d836a062f30e46c95b57a474ff7a8a16a29e543f02c100e5faa84aae505a8f3f925b479f89a8165e6bc6b4d5830c7c01f6eff1f4ec7e",
     imageBlobUrl:
-      "https://g03pixcfibqaykq3.public.blob.vercel-storage.com/package-oBEbKyUNTLnB5QRcufTMMNyo79MJ4Q",
+      "https://g03pixcfibqaykq3.public.blob.vercel-storage.com/package-oBEbKyUNTLnB5QRcufTMMNyxo79MJ4Q",
   },
   {
     category: "infrastructure",

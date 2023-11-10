@@ -18,11 +18,9 @@ import { ZUPASS_URL } from "../hooks/zuPass/constants";
 import router from "next/router";
 import { CollapsableCode } from "@/components/Core";
 //import { CollapsableCode, HomeLink } from "../../components/Core";
-import { SignContext } from './_app';
-
+import { SignContext } from "./_app";
 
 const inter = Inter({ subsets: ["latin"] });
-
 
 export function useZupassPopupMessages() {
   const [pcdStr, setPCDStr] = useState("");
@@ -37,7 +35,7 @@ export function useZupassPopupMessages() {
       if (ev.data.encodedPCD) {
         console.log("Received PCD", ev.data.encodedPCD);
         const parsedData = JSON.parse(ev.data.encodedPCD);
-        console.log('parsedData', parsedData)
+        console.log("parsedData", parsedData);
         if (parsedData.pcd) {
           const pcdData = JSON.parse(parsedData.pcd);
           if (pcdData.claim) {
@@ -92,8 +90,8 @@ export default function Login() {
   }, [logInContext.logInTheme]);
 
   return (
-    <section className="h-[100vh] w-[100%] flex justify-center items-center bg-[#F7EEE1]">
-      <div className="flex-col items-center text-center">
+    <section className="h-full w-[100%] flex justify-center items-center bg-[#F7EEE1]">
+      <div className="flex-col items-center justify-center text-center">
         <div
           className="bg-center h-32"
           style={{
