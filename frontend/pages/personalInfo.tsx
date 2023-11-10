@@ -42,7 +42,7 @@ export default function PersonalInfo() {
     console.log('pubKey', pubKey)
     setIsForeground(false)
     console.log('cardPubKeys', cardPubKeys)
-    const card = cardPubKeys.find(card => card.pubKeyJub === pubKey);
+    const card = cardPubKeys.find(card => card.pubKeySlot1 === pubKey);
 
     if (card) {
       console.log(card.emoji); // This will print the emoji of the card with the matching pubKeyJub
