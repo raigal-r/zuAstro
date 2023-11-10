@@ -90,7 +90,7 @@ export default function Login() {
   }, [logInContext.logInTheme]);
 
   return (
-    <section className="h-full w-[100%] flex justify-center items-center bg-[#F7EEE1]">
+    <section className="h-[100vh] w-[100%] flex justify-center items-center bg-[#F7EEE1]">
       <div className="flex-col items-center justify-center text-center">
         <div
           className="bg-center h-32"
@@ -103,7 +103,7 @@ export default function Login() {
         ></div>
         <div className="grid grid-rows-2 w-full gap-4 mt-7">
           <button
-            className="bg-aGreen text-white font-medium text-xl rounded-3xl py-[1.4rem] w-full px-12 mt-4 text-center"
+            className="bg-aGreen text-white font-medium text-xl  py-[1.4rem] w-full px-12 mt-4 text-center"
             onClick={() => {
               router.push("./createBirthChart");
 
@@ -113,7 +113,7 @@ export default function Login() {
             Generate New Birth Chart
           </button>
           <button
-            className="bg-aPurple text-white font-medium text-xl rounded-3xl py-[1.4rem] w-full px-12 mt-4 text-center"
+            className="bg-aPurple text-white font-medium text-xl py-[1.4rem] w-full px-12 mt-4 text-center"
             onClick={() => {
               getProofWithoutProving();
               //logInContext.logInTheme = true

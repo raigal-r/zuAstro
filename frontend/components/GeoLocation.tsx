@@ -15,7 +15,6 @@ import {
 
 // Example component using the custom hook
 const GeoLocationComponent: React.FC = () => {
-<<<<<<< HEAD
   const { coordinates, getCoordinates } = useGeoLocation();
   const [address, setAddress] = useState("");
 
@@ -50,33 +49,6 @@ const GeoLocationComponent: React.FC = () => {
       )}
     </div>
   );
-=======
-    const { coordinates, getCoordinates } = useGeoLocation();
-    const [address, setAddress] = useState('');
-
-  
-    const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setAddress(event.target.value);
-    };
-  
-    const handleGetCoordinates = () => {
-      getCoordinates(address);
-    };
-  
-    return (
-      <div>
-        <input type="text" value={address} onChange={handleAddressChange} />
-        <button onClick={handleGetCoordinates}>Get Coordinates</button>
-        {coordinates && (
-          <div>
-            Latitude: {coordinates.lat}
-            <br />
-            Longitude: {coordinates.lng}
-          </div>
-        )}
-      </div>
-    );
->>>>>>> 0663bb8d12e61f120eee9ffdd8acf8372eb9a92a
 };
 export default GeoLocationComponent;
 
