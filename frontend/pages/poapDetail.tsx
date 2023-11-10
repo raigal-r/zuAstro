@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 import {SignContext, SignContext2} from "./_app"
+import router from "next/router";
+
 
 
 
@@ -57,7 +59,7 @@ export default function PoapDetail() {
               setResponse(JSON.stringify(response));
               console.log(JSON.stringify(response));
               const data = await response.json(); // parse the response as JSON
-              
+              console.log(data)
               const elements = data.data.elements;
               setElements(elements);
               const ideal_date = data.data.ideal_date;
@@ -115,7 +117,9 @@ export default function PoapDetail() {
           </div>
         </div>
         <div className="grid grid-cols-2 w-full ">
-            <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
+            <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center"
+                onClick={() => router.push("./personalInfo")}
+            >
               Main Page
             </button>
             <button className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-44 text-center">
