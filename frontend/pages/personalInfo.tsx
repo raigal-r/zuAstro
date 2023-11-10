@@ -128,7 +128,6 @@ export default function PersonalInfo() {
           <p>pubKey: </p>
           {pubKey}
         </div>
-
         }
       </section>
     }
@@ -196,7 +195,6 @@ export function ForegroundTapModal({
       </span>
       <span className="font-helvetica text-base font-normal leading-[22.4px] text-woodsmoke-100">
         {statusText}
-        {pubKey}
       </span>
       <span className="font-helvetica text-base font-normal leading-[22.4px] text-woodsmoke-100">
         {"If you still can't tap, check out the "}
