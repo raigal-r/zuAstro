@@ -40,7 +40,7 @@ export default function PersonalInfo() {
 
   return (
     <>
-    {!isForeground && 
+    {/* {!isForeground &&  */}
     <section className="h-[100vh] w-full flex justify-center ">
       <div className="flex-col items-center">
         <h1 className="text-3xl mb-1 text-gray-600 text-center">0xDonald</h1>
@@ -113,8 +113,8 @@ export default function PersonalInfo() {
         </div>
       </div>
     </section>
-    }
-    {isForeground && 
+    {/* /* // }
+    /*{ {isForeground && 
     <section>
       <ForegroundTapModal 
         message="Get zodiac sign compatibility" 
@@ -125,7 +125,7 @@ export default function PersonalInfo() {
         }}
       />
     </section>
-    }
+    } */}
     </>
   );
 }
