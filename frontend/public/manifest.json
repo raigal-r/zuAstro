@@ -1,6 +1,7 @@
 {
     "short_name": "App",
     "name": "zuAstro App",
+    "description": "Hack Zuzalu project. Social app using ZK and NFTs to connect people through astrology",
     "icons": [
       {
         "src": "./images/logo_192.png",
