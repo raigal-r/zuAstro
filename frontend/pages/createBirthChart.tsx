@@ -40,6 +40,7 @@ export default function CreateBirthChart() {
   const [year, setYear] = useState("");
   const [hour, setHour] = useState("");
 
+
   const [astroData, setAstroData] = useState<{
     success: number;
     data: { svg: string }[];
@@ -50,6 +51,8 @@ export default function CreateBirthChart() {
   const { string, setString } = React.useContext(SignContext);
 
   const [isSVG, setIsSVG] = useState(string);
+  const cleanedSvgString= '';
+
 
   useEffect(() => {
     setString(signedMessage);
@@ -59,6 +62,10 @@ export default function CreateBirthChart() {
   useEffect(() => {
     console.log("string", string);
   }, [string]);
+
+  useEffect(() => {
+    const cleanedSvgString = isSVG.replace(/\n/g, "").replace(/\\'/g, "'");
+  }, [isSVG])
 
   const handleInputChange = (
     param: "day" | "month" | "year" | "hour",
@@ -108,7 +115,7 @@ export default function CreateBirthChart() {
         const data = await response.json();
         console.log("Response data:", data); // Add this line
         setAstroData(data);
-        setIsSVG(data.data[0].svg);
+        setIsSVG(data.data.svg);
         console.log("birth chart response:", data); //The response it's a svg data
       } else {
         throw new Error(
@@ -227,6 +234,7 @@ export default function CreateBirthChart() {
             <p className="text-3xl mb-2 text-gray-600 text-left ">
               Check Your BirthChart
             </p>
+             < SvgComponent svgString={isSVG} />
             {/* <div
               className="bg-center h-96 my-7 "
               style={{
@@ -236,7 +244,7 @@ export default function CreateBirthChart() {
                 backgroundSize: "contain",
               }}
             ></div> */}
-            <div>
+            {/* <div>
               <div>
                 {astroData &&
                   astroData.data.map((item, index) => (
@@ -246,7 +254,7 @@ export default function CreateBirthChart() {
                     />
                   ))}
               </div>
-            </div>
+            </div> */}
             <div className="grid grid-rows-2 w-full gap-2">
               <button
                 className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-full text-center"
@@ -432,3 +440,10 @@ async function addSignatureProofPCD(messageToSign: string) {
 
   sendZupassRequest(proofUrl);
 }
+
+const SvgComponent = ({ svgString }: {svgString: string}) => {
+  // Replace newlines and potential other formatting characters
+  const cleanedSvgString = svgString.replace(/\n/g, "").replace(/\\'/g, "'");
+
+  return <div dangerouslySetInnerHTML={{ __html: cleanedSvgString }} />;
+};
