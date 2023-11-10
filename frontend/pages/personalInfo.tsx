@@ -44,7 +44,7 @@ export default function PersonalInfo() {
     const card = cardPubKeys.find(card => card.pubKeyJub === pubKey);
     if (card) {
       console.log(card.emoji); // This will print the emoji of the card with the matching pubKeyJub
-      router.push("/poapDetail")
+      router.push("./poapDetail")
     } else {
       console.log('No card found with the provided pubKey');
     }
