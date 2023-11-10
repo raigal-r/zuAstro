@@ -10,6 +10,14 @@ import Modal from "../components/Modal";
 import { bigIntToHex } from "babyjubjub-ecdsa";
 import { execHaloCmdWeb } from "@arx-research/libhalo/api/web.js";
 
+import {
+  NUniqueJubmojiInCollectionProof,
+  NUniqueJubmojisInCollection,
+  createProofInstance,
+  CardPubKey,
+  cardPubKeys
+} from "jubmoji-api";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export type ForegroundTapModalProps = {
@@ -23,13 +31,23 @@ export default function PersonalInfo() {
   const { string, setString } = React.useContext(SignContext);
 
   const [isForeground, setIsForeground] = useState(false)
-  const [pubKey, setPubKey] = useState('')
+
+  const [pubKey, setPubKey] = useState<string>('')
+  const [rawSig, setRawSig] = useState<string>('')
+  const [digest, setDigest] = useState<string>('')
+
+  
 
   useEffect(() => {
     console.log('pubKey', pubKey)
     setIsForeground(false)
-
-    
+    const card = cardPubKeys.find(card => card.pubKeyJub === pubKey);
+    if (card) {
+      console.log(card.emoji); // This will print the emoji of the card with the matching pubKeyJub
+      router.push("/poapDetail")
+    } else {
+      console.log('No card found with the provided pubKey');
+    }
   }, [pubKey]);
 
 
@@ -121,14 +139,10 @@ export default function PersonalInfo() {
           onTap={async (args: NfcCardSignMessageResult) => {
             // Handle the tap event here
             setPubKey(args.pubKey)
+            setRawSig(JSON.stringify(args.rawSig))
+            setDigest(args.digest)
           }}
         />
-        {pubKey &&
-        <div>
-          <p>pubKey: </p>
-          {pubKey}
-        </div>
-        }
       </section>
     }
     </>
@@ -210,3 +224,5 @@ export function ForegroundTapModal({
     </Modal>
   );
 }
+
+
