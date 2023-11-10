@@ -77,16 +77,141 @@ export default function PersonalInfo() {
     {!isForeground && 
     <section className="h-[100vh] w-full flex justify-center ">
       <div className="flex-col items-center">
-        <h1 className="text-3xl mb-1 text-gray-600 text-center">0xDonald</h1>
-        <div
+        <h1 className="text-3xl mb-1 text-gray-600 text-center">0xAnon</h1>
+        { string.toLocaleLowerCase() === 'leo' &&
+            <div
+            className="bg-center h-72 m-7 "
+            style={{
+              backgroundImage: `url('images/leo-icon.png')`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+            }}
+          ></div>
+        }
+        { string.toLocaleLowerCase() === 'aquarius' && 
+          <div
           className="bg-center h-72 m-7 "
           style={{
-            backgroundImage: `url('images/leo.png')`,
+            backgroundImage: `url('images/aquarius-icon.png')`,
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
           }}
         ></div>
+        }
+        { string.toLocaleLowerCase() === 'aries' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/aries-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'cancer' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/cancer-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'capricorn' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/capricorn-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'gemini' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/gemini-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'pisces' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/pisces-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'sagittarius' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/sagittarius-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'scorpio' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/scorpio-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'taurus' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/taurus-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'libra' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/libra-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+         { string.toLocaleLowerCase() === 'virgo' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/virgo-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+
+        
         <div className="flex justify-center items-center w-full">
           <button className="bg-aGreen text-white font-medium text-xl py-3 w-44 mt-4 text-center"
           onClick={() => {

@@ -34,6 +34,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
     "esm": "^3.2.25",
     "jubmoji-api": "^0.1.0",
     "lucide-react": "^0.292.0",
@@ -47,6 +48,7 @@
     "react-svg": "^16.1.29",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
+    "tz-lookup": "^6.1.25",
     "zod": "^3.22.4"
   },
   "devDependencies": {

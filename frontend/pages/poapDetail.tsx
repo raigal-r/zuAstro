@@ -50,7 +50,7 @@ export default function PoapDetail() {
                 //sign_1: string.toLowerCase(), // Replace with your actual API key
                 //sign_2: string2.toLowerCase(),
                 sign_1: 'taurus',
-                sign_2: 'aries',
+                sign_2: 'capricorn',
                 api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
               }),
             });

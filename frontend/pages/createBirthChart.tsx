@@ -16,6 +16,10 @@ import { SignContext } from "./_app";
 // import ReactSVG from "react-svg";
 // import InlineSVG from "react-inlinesvg";
 
+import tzlookup from "tz-lookup";
+import { utcToZonedTime, format } from "date-fns-tz";
+
+
 interface SvgImageProps {
   src: string;
   alt?: string;
@@ -39,6 +43,8 @@ export default function CreateBirthChart() {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [hour, setHour] = useState("");
+
+  const [coordinates, setCoordinates] = useState<{ lat: number; lng: number } | null>(null);
 
 
   const [astroData, setAstroData] = useState<{
@@ -84,6 +90,12 @@ export default function CreateBirthChart() {
   };
 
   const createBirthChartImage = async () => {
+
+    let timezone = tzlookup(coordinates?.lat?.toString() || "", coordinates?.lng?.toString() || "");
+    let dateInTimezone = utcToZonedTime(new Date(), timezone);
+    let offsetMinutes = dateInTimezone.getTimezoneOffset();
+    let offsetHours = offsetMinutes / 60;
+
     try {
       const response = await fetch(
         "https://astroapi-4.divineapi.com/western-api/v1/natal-wheel-chart",
@@ -95,18 +107,18 @@ export default function CreateBirthChart() {
           },
           body: new URLSearchParams({
             api_key: "b8c27b7a1c450ffdacb31483454e0b54",
-            full_name: "Raquel Carrasco",
-            place: "Arenys de Mar, Spain",
+            full_name: "Anon",
+            place: "Narnia",
             gender: "female",
             day: day.toString().toLowerCase(),
             month: month.toString().toLowerCase(),
             year: year.toString().toLowerCase(),
             hour: hour.toString().toLowerCase(),
             min: "00",
-            sec: "43",
-            lon: "2.5346498", // This needs to change, not hard coded
-            lat: "41.5783288",
-            tzone: "1",
+            sec: "00",
+            lon: coordinates?.lng?.toString() || "",
+            lat: coordinates?.lat?.toString() || "",
+            tzone: offsetHours.toString(),
           }),
         }
       );
@@ -213,8 +225,7 @@ export default function CreateBirthChart() {
             <div className=" text-[1.11rem] w-full">
               Fill Out Your Birth Location
             </div>
-            <GeoLocationComponent />
-          </div>
+            <GeoLocationComponent setCoordinates={setCoordinates} />          </div>
           <div className="grid w-full ">
             <button
               className=" py-4 text-center bg-aGreen text-white mt-10"

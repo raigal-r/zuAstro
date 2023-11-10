@@ -13,8 +13,12 @@ import {
   RequestType,
 } from "react-geocode";
 
+interface GeoLocationComponentProps {
+  setCoordinates: (coordinates: { lat: number; lng: number } | null) => void;
+}
+
 // Example component using the custom hook
-const GeoLocationComponent: React.FC = () => {
+const GeoLocationComponent: React.FC<GeoLocationComponentProps> = ({ setCoordinates }) => {
   const { coordinates, getCoordinates } = useGeoLocation();
   const [address, setAddress] = useState("");
 
@@ -22,8 +26,9 @@ const GeoLocationComponent: React.FC = () => {
     setAddress(event.target.value);
   };
 
-  const handleGetCoordinates = () => {
-    getCoordinates(address);
+  const handleGetCoordinates = async () => {
+    const result = await getCoordinates(address);
+    setCoordinates(result);
   };
 
   return (
@@ -65,8 +70,10 @@ export const useGeoLocation = () => {
       const response = await fromAddress(address);
       const { lat, lng } = response.results[0].geometry.location;
       setCoordinates({ lat, lng });
+      return { lat, lng };
     } catch (error) {
       console.error("Error getting coordinates:", error);
+      return null;
     }
   };
 
