@@ -1,9 +1,9 @@
-import React, {useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { ArgsOf, PCDPackage, SerializedPCD } from "@pcd/pcd-types";
 import { ArgumentTypeName } from "@pcd/pcd-types";
 import {
   SemaphoreSignaturePCD,
-  SemaphoreSignaturePCDPackage
+  SemaphoreSignaturePCDPackage,
 } from "@pcd/semaphore-signature-pcd";
 import { SemaphoreIdentityPCDPackage } from "@pcd/semaphore-identity-pcd";
 
@@ -12,28 +12,38 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import GeoLocationComponent from "@/components/GeoLocation";
 import router from "next/router";
-import {SignContext} from "./_app"
-import ReactSVG from 'react-svg'
-import InlineSVG from 'react-inlinesvg';
+import { SignContext } from "./_app";
+// import ReactSVG from "react-svg";
+// import InlineSVG from "react-inlinesvg";
 
 interface SvgImageProps {
   src: string;
   alt?: string;
 }
 
-export const SvgImage: React.FC<SvgImageProps> = ({ src, alt = '' }) => {
+export const SvgImage: React.FC<SvgImageProps> = ({ src, alt = "" }) => {
   return <img src={src} alt={alt} />;
 };
 
-
-
+import TextInput from "@/components/TextInput"; // Import the reusable text input component
+import { setMonth } from "date-fns";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function CreateBirthChart() {
+  {
+    /* name - optional, place - required , gender - optional, day, months, year, hour */
+  }
+  const [name, setName] = useState("");
+  const [day, setDay] = useState("");
+  const [month, setMonth] = useState("");
+  const [year, setYear] = useState("");
+  const [hour, setHour] = useState("");
 
-
-  const [astroData, setAstroData] = useState<{ success: number, data: { svg: string }[] } | null>(null);
+  const [astroData, setAstroData] = useState<{
+    success: number;
+    data: { svg: string }[];
+  } | null>(null);
   const [signReportData, setSignReportData] = useState<any | null>(null); // Adjust the type according to the response data structure
   const [signedMessage, setSignedMessage] = useState("1");
 
@@ -43,170 +53,224 @@ export default function CreateBirthChart() {
 
   useEffect(() => {
     setString(signedMessage);
-    console.log('string', string)
-    
+    console.log("string", string);
   }, [signedMessage]);
 
   useEffect(() => {
-    console.log('string', string);
+    console.log("string", string);
   }, [string]);
 
+  const handleInputChange = (
+    param: "day" | "month" | "year" | "hour",
+
+    newValue: string
+  ) => {
+    if (param === "day") {
+      setDay(newValue);
+    } else if (param === "month") {
+      setMonth(newValue);
+    } else if (param === "year") {
+      setYear(newValue);
+    } else if (param === "hour") {
+      setHour(newValue);
+    }
+  };
 
   const createBirthChartImage = async () => {
     try {
-      const response = await fetch('https://astroapi-4.divineapi.com/western-api/v1/natal-wheel-chart', {
-        method: 'POST',
-        headers: {
-          Authorization: "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FzdHJvYXBpLTEuZGl2aW5lYXBpLmNvbS9hcGkvYXV0aC1hcGktcmVmcmVzaC10b2tlbiIsImlhdCI6MTY5OTU2NDMxMiwibmJmIjoxNjk5NTY5Njc5LCJqdGkiOiJCVzNnREZVS3ZxMWdONWRnIiwic3ViIjoiMTM1NSJ9._Bci3dYCDVRRtl9u-1JEONAWhxB3O9OFeJrp7a_j0ao"
-        },
-        body: new URLSearchParams({
-          api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
-          full_name: 'Raquel Carrasco',
-          place: 'Arenys de Mar, Spain',
-          gender: 'female',
-          day: '21',
-          month: '05',
-          year: '2023',
-          hour: '00',
-          min: '00',
-          sec: '43',
-          lon: '2.5346498', // This needs to change, not hard coded
-          lat: '41.5783288',
-          tzone: '1',
-        }),
-      });
+      const response = await fetch(
+        "https://astroapi-4.divineapi.com/western-api/v1/natal-wheel-chart",
+        {
+          method: "POST",
+          headers: {
+            Authorization:
+              "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FzdHJvYXBpLTEuZGl2aW5lYXBpLmNvbS9hcGkvYXV0aC1hcGktcmVmcmVzaC10b2tlbiIsImlhdCI6MTY5OTU2NDMxMiwibmJmIjoxNjk5NTY5Njc5LCJqdGkiOiJCVzNnREZVS3ZxMWdONWRnIiwic3ViIjoiMTM1NSJ9._Bci3dYCDVRRtl9u-1JEONAWhxB3O9OFeJrp7a_j0ao",
+          },
+          body: new URLSearchParams({
+            api_key: "b8c27b7a1c450ffdacb31483454e0b54",
+            full_name: "Raquel Carrasco",
+            place: "Arenys de Mar, Spain",
+            gender: "female",
+            day: day.toString().toLowerCase(),
+            month: month.toString().toLowerCase(),
+            year: year.toString().toLowerCase(),
+            hour: hour.toString().toLowerCase(),
+            min: "00",
+            sec: "43",
+            lon: "2.5346498", // This needs to change, not hard coded
+            lat: "41.5783288",
+            tzone: "1",
+          }),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Response data:', data); // Add this line
+        console.log("Response data:", data); // Add this line
         setAstroData(data);
-        setIsSVG(data.data[0].svg)
-        console.log('birth chart response:',data); //The response it's a svg data
+        setIsSVG(data.data[0].svg);
+        console.log("birth chart response:", data); //The response it's a svg data
       } else {
-        throw new Error(`Failed to fetch data from the API. Status: ${response.status}`);
+        throw new Error(
+          `Failed to fetch data from the API. Status: ${response.status}`
+        );
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
   };
 
   const createBirthChartSignReport = async () => {
-
-
     try {
-      const response = await fetch('https://astroapi-4.divineapi.com/western-api/v1/general-sign-report/sun', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FzdHJvYXBpLTEuZGl2aW5lYXBpLmNvbS9hcGkvYXV0aC1hcGktcmVmcmVzaC10b2tlbiIsImlhdCI6MTY5OTU2NDMxMiwibmJmIjoxNjk5NTY5Njc5LCJqdGkiOiJCVzNnREZVS3ZxMWdONWRnIiwic3ViIjoiMTM1NSJ9._Bci3dYCDVRRtl9u-1JEONAWhxB3O9OFeJrp7a_j0ao`
-        },
-        body: new URLSearchParams({
-          api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
-          full_name: 'Raquel Carrasco',
-          day: '21',
-          month: '05',
-          year: '2023',
-          hour: '00',
-          min: '00',
-          sec: '43',
-          gender: 'female',
-          place: 'Arenys de Mar, Spain',
-          lon: '2.5346', // This needs to change, not hard coded
-          lat: '41.5783',
-          tzone: '1',
-        }),
-      });
+      const response = await fetch(
+        "https://astroapi-4.divineapi.com/western-api/v1/general-sign-report/sun",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FzdHJvYXBpLTEuZGl2aW5lYXBpLmNvbS9hcGkvYXV0aC1hcGktcmVmcmVzaC10b2tlbiIsImlhdCI6MTY5OTU2NDMxMiwibmJmIjoxNjk5NTY5Njc5LCJqdGkiOiJCVzNnREZVS3ZxMWdONWRnIiwic3ViIjoiMTM1NSJ9._Bci3dYCDVRRtl9u-1JEONAWhxB3O9OFeJrp7a_j0ao`,
+          },
+          body: new URLSearchParams({
+            api_key: "b8c27b7a1c450ffdacb31483454e0b54",
+            full_name: "Raquel Carrasco",
+            day: day.toString().toLowerCase(),
+            month: month.toString().toLowerCase(),
+            year: year.toString().toLowerCase(),
+            hour: hour.toString().toLowerCase(),
+            min: "00",
+            sec: "43",
+            gender: "female",
+            place: "Arenys de Mar, Spain",
+            lon: "2.5346", // This needs to change, not hard coded
+            lat: "41.5783",
+            tzone: "1",
+          }),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json(); //
         setSignReportData(data);
-        setSignedMessage(data.data.sign_name)
+        setSignedMessage(data.data.sign_name);
         const signedMessage = data.data.sign_name;
-        setString(signedMessage)
-        console.log(signedMessage)
-        console.log('Sign Data:', data.data.sign_name)
+        setString(signedMessage);
+        console.log(signedMessage);
+        console.log("Sign Data:", data.data.sign_name);
       } else {
-        throw new Error(`Failed to fetch data from the API. Status: ${response.status}`);
+        throw new Error(
+          `Failed to fetch data from the API. Status: ${response.status}`
+        );
       }
     } catch (error) {
-      console.error('Error:', error);
+      console.error("Error:", error);
     }
-
-
-
-  }
+  };
   return (
-    <section className="h-[100vh] w-full flex justify-center items-center">
-      {!signReportData &&
-      <div>
-        <div className="flex-col items-center ">
-          <h1>Create Your BirthChart for Horoscope</h1>
-          <div>
-            <h2>Birthdate</h2>
+    <section className="h-full w-full">
+      {!signReportData && (
+        <div className=" flex-col  text-gray-600">
+          <div className="flex flex-col ">
+            <p className="text-3xl mb-[3rem]">Create Your Birth Chart</p>
+            <div className="grid grid-cols-3 gap-2 overflow-hidden">
+              {/* name - optional, place - requery , gender - optional, day, months, year, hour */}
+              <div>
+                <TextInput
+                  label="Day"
+                  value={day}
+                  onChange={(value) => handleInputChange("day", value)}
+                />
+              </div>
+              <div>
+                <TextInput
+                  label="Month"
+                  value={month}
+                  onChange={(value) => handleInputChange("month", value)}
+                />
+              </div>
+              <div>
+                <TextInput
+                  label="Year"
+                  value={year}
+                  onChange={(value) => handleInputChange("year", value)}
+                />
+              </div>
+            </div>
+            <div>
+              <TextInput
+                label="Hour"
+                value={hour}
+                onChange={(value) => handleInputChange("hour", value)}
+              />
+            </div>
           </div>
           <div>
-            <h2>Place You Were Born</h2>
+            <div className=" text-[1.11rem] w-full">
+              Fill Out Your Birth Location
+            </div>
+            <GeoLocationComponent />
           </div>
-          <div>
-          <GeoLocationComponent />
-          </div>
-
-
-          <button 
-          className="  bg-white text-black  py-3 px-20 text-center"
-          onClick={() => {
-            createBirthChartImage();
-            createBirthChartSignReport();
-          }}>
-            Create BirthChart
-          </button>
-        </div>
-      </div>
-      }
-      {signReportData &&
-      <div>
-        <div className="flex-col w-max ">
-          <p className="text-3xl mb-2 text-gray-600 text-left ">
-            Check Your BirthChart
-          </p>
-          <div>
-            <p>Here should be the image</p>
-            {/* {isSVG ? <SvgImage src={isSVG} alt="Birth Chart wheel" /> : 
-            <p>Loading...</p>}         */}
-          </div>
-          {/* <div
-            className="bg-center h-96 my-7 "
-            style={{
-              backgroundImage: `url('images/birthchart.png')`,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-            }}
-          ></div> */}
-          <div className="grid grid-rows-2 w-full gap-2">
-            <button 
-            className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-full text-center"
-            //onClick={() => addSignatureProofPCD('libra')}>
-            onClick={() => addSignatureProofPCD(signedMessage)}>
-
-              Save Your Birthchart
-            </button>
-        
-            <button 
-            className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-full text-center"
-            onClick={() => {
-              router.push("./personalInfo");
-
-              //logInContext.logInTheme = true
-            }}
+          <div className="grid w-full ">
+            <button
+              className=" py-4 text-center bg-aGreen text-white mt-10"
+              onClick={() => {
+                createBirthChartImage();
+                createBirthChartSignReport();
+              }}
             >
-              Main Page
+              Create BirthChart
             </button>
           </div>
-          <div className="grid grid-cols-2 w-full gap-2"></div>
         </div>
-      </div>
-      }
-      
+      )}
+      {signReportData && (
+        <div>
+          <div className="flex-col w-max ">
+            <p className="text-3xl mb-2 text-gray-600 text-left ">
+              Check Your BirthChart
+            </p>
+            {/* <div
+              className="bg-center h-96 my-7 "
+              style={{
+                backgroundImage: `url('images/birthchart.png')`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "contain",
+              }}
+            ></div> */}
+            <div>
+              <div>
+                {astroData &&
+                  astroData.data.map((item, index) => (
+                    <div
+                      key={index}
+                      dangerouslySetInnerHTML={{ __html: item.svg }}
+                    />
+                  ))}
+              </div>
+            </div>
+            <div className="grid grid-rows-2 w-full gap-2">
+              <button
+                className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-full text-center"
+                //onClick={() => addSignatureProofPCD('libra')}>
+                onClick={() => addSignatureProofPCD(signedMessage)}
+              >
+                Save Your Birthchart
+              </button>
+
+              <button
+                className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-full text-center"
+                onClick={() => {
+                  router.push("./personalInfo");
+
+                  //logInContext.logInTheme = true
+                }}
+              >
+                Main Page
+              </button>
+            </div>
+            <div className="grid grid-cols-2 w-full gap-2"></div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -224,7 +288,7 @@ export enum PCDRequestType {
   Get = "Get",
   GetWithoutProving = "GetWithoutProving",
   Add = "Add",
-  ProveAndAdd = "ProveAndAdd"
+  ProveAndAdd = "ProveAndAdd",
 }
 
 export interface PCDRequest {
@@ -252,7 +316,7 @@ export function constructZupassPcdGetRequestUrl<T extends PCDPackage>(
     returnUrl: returnUrl,
     args: args,
     pcdType,
-    options
+    options,
   };
   const encReq = encodeURIComponent(JSON.stringify(req));
   return `${zupassClientUrl}#/prove?request=${encReq}`;
@@ -279,16 +343,16 @@ export function openSignedZuzaluSignInPopup(
         argumentType: ArgumentTypeName.PCD,
         pcdType: SemaphoreIdentityPCDPackage.name,
         value: undefined,
-        userProvided: true
+        userProvided: true,
       },
       signedMessage: {
-        argumentType: ArgumentTypeName.String
-      }
+        argumentType: ArgumentTypeName.String,
+      },
     },
     {
       title: "Zuzalu Auth",
       description: originalSiteName,
-      signIn: true
+      signIn: true,
     }
   );
 
@@ -329,7 +393,7 @@ export function constructZupassPcdProveAndAddRequestUrl<
     pcdType,
     args,
     options,
-    returnPCD
+    returnPCD,
   };
   const eqReq = encodeURIComponent(JSON.stringify(req));
   return `${zupassClientUrl}#/add?request=${eqReq}`;
@@ -353,21 +417,18 @@ async function addSignatureProofPCD(messageToSign: string) {
         argumentType: ArgumentTypeName.PCD,
         pcdType: SemaphoreIdentityPCDPackage.name,
         value: undefined,
-        userProvided: true
+        userProvided: true,
       },
       signedMessage: {
         argumentType: ArgumentTypeName.String,
         value: messageToSign,
-        userProvided: false
-      }
+        userProvided: false,
+      },
     },
     {
-      title: "Semaphore Signature Proof"
+      title: "Semaphore Signature Proof",
     }
   );
 
   sendZupassRequest(proofUrl);
 }
-
-
-
