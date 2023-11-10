@@ -47,7 +47,7 @@ export default function PersonalInfo() {
     const card = cardPubKeys.find(card => card.pubKeySlot1 === pubKey);
 
     if (card) {
-      if (card.emoji === "💾") {
+      if (card.cardName === "floppydisk") {
         setString2('taurus')
         router.push("./poapDetail")
       } else if (card.emoji === "🖱️"){
