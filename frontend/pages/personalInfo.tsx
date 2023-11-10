@@ -57,7 +57,7 @@ export default function PersonalInfo() {
         setString2('aries')
         router.push("./poapDetail")
       }
-      console.log(card.emoji);
+      console.log(card.cardName);
       console.log(string2) // This will print the emoji of the card with the matching pubKeyJub
       //router.push("./poapDetail")
 
