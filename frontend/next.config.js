@@ -7,6 +7,7 @@ const nextConfig = {
     }
     return config;
   },
+  transpilePackages: ['jubmoji-api'],
 };
 
 module.exports = nextConfig;
