@@ -2,6 +2,21 @@ import Layout from "@/components/Layout";
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import React, {useContext, createContext, useEffect} from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ToastContainer } from "react-toastify";
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import {
+  polygon,
+  polygonMumbai,
+} from 'wagmi/chains';
+//import { alchemyProvider } from 'wagmi/providers/alchemy';
+import { publicProvider } from 'wagmi/providers/public';
+
+
 
 export const SignContext = React.createContext({
   string: "",
@@ -26,14 +41,42 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, []);
 
+  const queryClient = new QueryClient();
+
+  //RainbowKit configuration
+  const { chains, publicClient } = configureChains(
+  [polygon, polygonMumbai],
+  [
+    publicProvider()
+  ]
+);
+
+  const { connectors } = getDefaultWallets({
+    appName: 'RainbowKit Connect PEERUP',
+    projectId: '152edacbf75e37f23d75d7dbde5fe298',
+    chains
+  });
+
+  const wagmiConfig = createConfig({
+    autoConnect: true,
+    connectors,
+    publicClient
+  })
+
 
   return (
-    <SignContext.Provider value={{ string, setString }}>
-      <link rel="manifest" href="/manifest.json" />
-
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </SignContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <WagmiConfig config={wagmiConfig}>
+        <RainbowKitProvider chains={chains}>
+          <SignContext.Provider value={{ string, setString }}>
+            <link rel="manifest" href="/manifest.json" />
+            <Layout>
+              <Component {...pageProps} />
+              <ToastContainer />
+            </Layout>
+          </SignContext.Provider>
+          </RainbowKitProvider>
+      </WagmiConfig>
+    </QueryClientProvider>
   );
 }
