@@ -15,7 +15,7 @@ export default function PersonalInfo() {
           Check Your BirthChart
         </p>
         <div
-          className="bg-center h-96 my-7 "
+          className="bg-center h-96 my-7"
           style={{
             backgroundImage: `url('images/birthchart.png')`,
             backgroundPosition: "center",
