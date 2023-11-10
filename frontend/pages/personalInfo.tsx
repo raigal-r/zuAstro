@@ -112,6 +112,9 @@ export default function PersonalInfo() {
           </button>
         </div>
       </div>
+      <div>
+        {pubKey}
+      </div>
     </section>
     }
     {isForeground && 
