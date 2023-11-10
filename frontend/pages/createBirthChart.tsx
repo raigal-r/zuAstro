@@ -117,7 +117,7 @@ export default function CreateBirthChart() {
       });
 
       if (response.ok) {
-        const data = await response.json();
+        const data = await response.json(); //
         setSignReportData(data);
         setSignedMessage(data.data.sign_name)
         const signedMessage = data.data.sign_name;
@@ -170,8 +170,8 @@ export default function CreateBirthChart() {
           </p>
           <div>
             <p>Here should be the image</p>
-            {isSVG ? <SvgImage src={isSVG} alt="Birth Chart wheel" /> : 
-            <p>Loading...</p>}        
+            {/* {isSVG ? <SvgImage src={isSVG} alt="Birth Chart wheel" /> : 
+            <p>Loading...</p>}         */}
           </div>
           {/* <div
             className="bg-center h-96 my-7 "
