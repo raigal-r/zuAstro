@@ -40,7 +40,7 @@ export default function PersonalInfo() {
 
   return (
     <>
-    {/* {!isForeground &&  */}
+    {!isForeground && 
     <section className="h-[100vh] w-full flex justify-center ">
       <div className="flex-col items-center">
         <h1 className="text-3xl mb-1 text-gray-600 text-center">0xDonald</h1>
@@ -113,19 +113,25 @@ export default function PersonalInfo() {
         </div>
       </div>
     </section>
-    {/* /* // }
-    /*{ {isForeground && 
-    <section>
-      <ForegroundTapModal 
-        message="Get zodiac sign compatibility" 
-        onTap={async (args: NfcCardSignMessageResult) => {
-          // Handle the tap event here
-          //setPubKey(args.pubKey)
+    }
+    {isForeground && 
+      <section>
+        <ForegroundTapModal 
+          message="Get zodiac sign compatibility" 
+          onTap={async (args: NfcCardSignMessageResult) => {
+            // Handle the tap event here
+            setPubKey(args.pubKey)
+          }}
+        />
+        {pubKey &&
+        <div>
+          <p>pubKey: </p>
+          {pubKey}
+        </div>
 
-        }}
-      />
-    </section>
-    } */}
+        }
+      </section>
+    }
     </>
   );
 }
@@ -173,7 +179,7 @@ export function ForegroundTapModal({
           rawSig: res.signature.raw,
           pubKey: res.publicKey,
         });
-        setStatusText("Tapped card! Process result...");
+        setStatusText(`Tapped card! Process result...`, );
       } catch (error) {
         console.error(error);
         setStatusText("Scanning failed, please try again.");
@@ -190,6 +196,7 @@ export function ForegroundTapModal({
       </span>
       <span className="font-helvetica text-base font-normal leading-[22.4px] text-woodsmoke-100">
         {statusText}
+        {pubKey}
       </span>
       <span className="font-helvetica text-base font-normal leading-[22.4px] text-woodsmoke-100">
         {"If you still can't tap, check out the "}
