@@ -54,7 +54,7 @@ export default function PoapDetail() {
 
 export const useLoveCompatibility = async () => {
   const [compatibilityData, setCompatibilityData] = useState<string | null>(null);
-  const { string, setString } = React.useContext(signContext);
+  const { string, setString } = React.useContext(SignContext);
       try {
         const response = await fetch('https://divineapi.com/api/1.0/get_compatibility.php', {
           method: 'POST',
