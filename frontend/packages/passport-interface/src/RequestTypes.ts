@@ -3,11 +3,6 @@ import { EdDSATicketPCD } from "@pcd/eddsa-ticket-pcd";
 import { PCDAction } from "@pcd/pcd-collection";
 import { ArgsOf, PCDOf, PCDPackage, SerializedPCD } from "@pcd/pcd-types";
 import { SemaphoreSignaturePCD } from "@pcd/semaphore-signature-pcd";
-import {
-  FrogCryptoDbFeedData,
-  FrogCryptoFrogData,
-  FrogCryptoScore
-} from "./FrogCrypto";
 import { PendingPCDStatus } from "./PendingPCDUtils";
 import { Feed } from "./SubscriptionManager";
 import { NamedAPIError } from "./api/apiResult";
@@ -694,92 +689,4 @@ export interface OfflineDevconnectTicket {
   ticketName: string;
   checkinTimestamp?: string;
   checker: string | null;
-}
-
-/**
- * User requests about
- * 1. for the feeds they are subscribed to, when they can get next frog and
- *    whether it is active
- * 2. how many frogs in Frogedex
- *
- * NB: The number of possible frogs are currently not user specific. It is
- * possible that we will introduce series unlock in the future where the number
- * of possible frogs will be user specific.
- */
-export interface FrogCryptoUserStateRequest {
-  pcd: SerializedPCD<SemaphoreSignaturePCD>;
-  feedIds: string[];
-}
-
-/**
- * Individual feed level response to {@link FrogCryptoUserStateRequest}
- */
-export interface FrogCryptoComputedUserState {
-  feedId: string;
-  lastFetchedAt: number;
-  nextFetchAt: number;
-  active: boolean;
-}
-
-/**
- * Response to {@link FrogCryptoUserStateRequest}
- */
-export interface FrogCryptoUserStateResponseValue {
-  feeds: FrogCryptoComputedUserState[];
-  /**
-   * A list of possible frog ids
-   */
-  possibleFrogIds: number[];
-  myScore?: FrogCryptoScore;
-}
-
-/**
- * Admin request to manage frogs in the databse.
- */
-export type FrogCryptoUpdateFrogsRequest = {
-  pcd: SerializedPCD<SemaphoreSignaturePCD>;
-  /**
-   * Pass empty array for no-op and return all frogs.
-   */
-  frogs: FrogCryptoFrogData[];
-};
-
-/**
- * Response to {@link FrogCryptoUpdateFrogsRequest} and returns all frogs.
- */
-export interface FrogCryptoUpdateFrogsResponseValue {
-  frogs: FrogCryptoFrogData[];
-}
-
-/**
- * Admin request to delete frogs in the databse.
- */
-export type FrogCryptoDeleteFrogsRequest = {
-  pcd: SerializedPCD<SemaphoreSignaturePCD>;
-  frogIds: number[];
-};
-
-/**
- * Response to {@link FrogCryptoDeleteFrogsRequest} and returns all remaining frogs.
- */
-export interface FrogCryptoDeleteFrogsResponseValue {
-  frogs: FrogCryptoFrogData[];
-}
-
-/**
- * Admin request to manage feeds in the databse.
- */
-export type FrogCryptoUpdateFeedsRequest = {
-  pcd: SerializedPCD<SemaphoreSignaturePCD>;
-  /**
-   * Pass empty array for no-op and return all feeds.
-   */
-  feeds: FrogCryptoDbFeedData[];
-};
-
-/**
- * Response to {@link FrogCryptoUpdateFeedsRequest} and returns all feeds.
- */
-export interface FrogCryptoUpdateFeedsResponseValue {
-  feeds: FrogCryptoDbFeedData[];
 }

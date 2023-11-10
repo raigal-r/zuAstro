@@ -15,11 +15,7 @@ export function serializeSemaphoreGroup(
     id: group.id.toString(),
     name,
     members: group.members.map((m) => m.toString()),
-<<<<<<< HEAD
-    depth: group.depth,
-=======
     depth: group.depth
->>>>>>> popup
   };
 }
 
