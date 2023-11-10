@@ -27,15 +27,17 @@ export default function PersonalInfo() {
 
   useEffect(() => {
     console.log('pubKey', pubKey)
+    setIsForeground(false)
+
     
   }, [pubKey]);
 
 
   const checkCompatibility = async () => {
     setIsForeground(true);
-    
 
   }
+
   return (
     <>
     {!isForeground && 
