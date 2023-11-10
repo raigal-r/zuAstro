@@ -89,7 +89,7 @@ export default function CreateBirthChart() {
     }
   };
 
-  let timezone = tzlookup(coordinates?.lat?.toString() || "", coordinates?.lng?.toString() || "");
+  let timezone = tzlookup(Number(coordinates?.lat) || 0, Number(coordinates?.lng) || 0);
   let dateInTimezone = utcToZonedTime(new Date(), timezone);
   let offsetMinutes = dateInTimezone.getTimezoneOffset();
   let offsetHours = offsetMinutes / 60;
