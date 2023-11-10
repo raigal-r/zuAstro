@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from 'react';
-import {SignContext} from "./_app"
+import {SignContext, SignContext2} from "./_app"
 
 
 
@@ -55,6 +55,8 @@ export default function PoapDetail() {
 export const useLoveCompatibility = async () => {
   const [compatibilityData, setCompatibilityData] = useState<string | null>(null);
   const { string, setString } = React.useContext(SignContext);
+  const { string2, setString2 } = React.useContext(SignContext2);
+
       try {
         const response = await fetch('https://divineapi.com/api/1.0/get_compatibility.php', {
           method: 'POST',
@@ -62,7 +64,7 @@ export const useLoveCompatibility = async () => {
           },
           body: new URLSearchParams({
             sign_1: string.toLowerCase(), // Replace with your actual API key
-            sign_2: "aries",
+            sign_2: string2.toLowerCase(),
             api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
           }),
         });
