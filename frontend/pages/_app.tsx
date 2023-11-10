@@ -16,6 +16,10 @@ import {
 //import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 
+import '@rainbow-me/rainbowkit/styles.css';
+
+import { alchemyProvider } from 'wagmi/providers/alchemy';
+
 
 
 export const SignContext = React.createContext({
@@ -65,18 +69,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider chains={chains}>
-          <SignContext.Provider value={{ string, setString }}>
-            <link rel="manifest" href="/manifest.json" />
-            <Layout>
-              <Component {...pageProps} />
-              <ToastContainer />
-            </Layout>
-          </SignContext.Provider>
-          </RainbowKitProvider>
-      </WagmiConfig>
-    </QueryClientProvider>
+    <WagmiConfig config={wagmiConfig}>
+      <RainbowKitProvider chains={chains}>
+        <SignContext.Provider value={{ string, setString }}>
+          <link rel="manifest" href="/manifest.json" />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </SignContext.Provider>
+      </RainbowKitProvider>
+     </WagmiConfig>    
   );
 }
