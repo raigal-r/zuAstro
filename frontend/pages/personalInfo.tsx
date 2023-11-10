@@ -41,8 +41,8 @@ export default function PersonalInfo() {
   useEffect(() => {
     console.log('pubKey', pubKey)
     setIsForeground(false)
+    console.log('cardPubKeys', cardPubKeys)
     const card = cardPubKeys.find(card => card.pubKeyJub === pubKey);
-    router.push("./poapDetail")
 
     if (card) {
       console.log(card.emoji); // This will print the emoji of the card with the matching pubKeyJub
