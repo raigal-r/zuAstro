@@ -8,12 +8,10 @@ import { Divide } from "lucide-react";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function PersonalInfo() {
-
   return (
     <section className="h-[100vh] w-full flex justify-center ">
-      
       <div className="flex-col w-max ">
-        <p className="text-3xl mb-2 text-gray-600 text-left ">
+        <p className="text-3xl mb-2 text-gray-600 text-left bg-fontFamily-josefin-0 ">
           Check Your BirthChart
         </p>
         <div

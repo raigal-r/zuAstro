@@ -7,14 +7,6 @@
 - [x] font family (morning) - joy
 - [ ] button padding
 
-/loading
-
-- [ ] Loading animations with Stars
-
-/Header
-
-/login
-
 /createBirthCahrt => morning(joy)
 
 - [ ] form calendar - day, month, year
@@ -26,14 +18,22 @@
 - [ ] download feature (option)
 - [ ] Toast Message
 
-/personalInfo
+/loading
 
-/dailyHoroscope
+- [ ] Loading animations with Stars
 
 /poapDetail
 
 - [ ] wallet connect
 - [ ] generate POAP
+
+/Header
+
+/login
+
+/personalInfo
+
+/dailyHoroscope
 
 /createNFC
 
