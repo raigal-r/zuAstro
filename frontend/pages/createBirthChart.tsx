@@ -89,12 +89,14 @@ export default function CreateBirthChart() {
     }
   };
 
+  let timezone = tzlookup(coordinates?.lat?.toString() || "", coordinates?.lng?.toString() || "");
+  let dateInTimezone = utcToZonedTime(new Date(), timezone);
+  let offsetMinutes = dateInTimezone.getTimezoneOffset();
+  let offsetHours = offsetMinutes / 60;
+
   const createBirthChartImage = async () => {
 
-    let timezone = tzlookup(coordinates?.lat?.toString() || "", coordinates?.lng?.toString() || "");
-    let dateInTimezone = utcToZonedTime(new Date(), timezone);
-    let offsetMinutes = dateInTimezone.getTimezoneOffset();
-    let offsetHours = offsetMinutes / 60;
+    
 
     try {
       const response = await fetch(
@@ -158,10 +160,10 @@ export default function CreateBirthChart() {
             min: "00",
             sec: "43",
             gender: "female",
-            place: "Arenys de Mar, Spain",
-            lon: "2.5346", // This needs to change, not hard coded
-            lat: "41.5783",
-            tzone: "1",
+            place: "Narnia",
+            lon: coordinates?.lng?.toString() || "",
+            lat: coordinates?.lat?.toString() || "",
+            tzone: offsetHours.toString(),
           }),
         }
       );
@@ -246,26 +248,7 @@ export default function CreateBirthChart() {
               Check Your BirthChart
             </p>
              < SvgComponent svgString={isSVG} />
-            {/* <div
-              className="bg-center h-96 my-7 "
-              style={{
-                backgroundImage: `url('images/birthchart.png')`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-              }}
-            ></div> */}
-            {/* <div>
-              <div>
-                {astroData &&
-                  astroData.data.map((item, index) => (
-                    <div
-                      key={index}
-                      dangerouslySetInnerHTML={{ __html: item.svg }}
-                    />
-                  ))}
-              </div>
-            </div> */}
+          
             <div className="grid grid-rows-2 w-full gap-2">
               <button
                 className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-full text-center"
@@ -280,7 +263,6 @@ export default function CreateBirthChart() {
                 onClick={() => {
                   router.push("./personalInfo");
 
-                  //logInContext.logInTheme = true
                 }}
               >
                 Main Page
