@@ -3,7 +3,7 @@ import React, {useState, useEffect, } from "react";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import {SignContext} from "./_app"
+import {SignContext, SignContext2} from "./_app"
 import router from "next/router";
 import { NfcCardSignMessageResult, getMessageHash } from "jubmoji-api";
 import Modal from "../components/Modal";
@@ -29,6 +29,8 @@ export type ForegroundTapModalProps = {
 export default function PersonalInfo() {
 
   const { string, setString } = React.useContext(SignContext);
+  const { string2, setString2 } = React.useContext(SignContext2);
+
 
   const [isForeground, setIsForeground] = useState(false)
 
@@ -45,8 +47,17 @@ export default function PersonalInfo() {
     const card = cardPubKeys.find(card => card.pubKeySlot1 === pubKey);
 
     if (card) {
+      if (card.emoji == "💾") {
+        setString2('taurus')
+        router.push("./poapDetail")
+      } else if (card.emoji == "🖱️"){
+        setString2('scorpio')
+        router.push("./poapDetail")
+      } else if (card.emoji == "🔧") {
+        setString2('aries')
+        router.push("./poapDetail")
+      }
       console.log(card.emoji); // This will print the emoji of the card with the matching pubKeyJub
-      //router.push("./poapDetail")
     } else {
       console.log('No card found with the provided pubKey');
     }

@@ -8,6 +8,11 @@ export const SignContext = React.createContext({
   setString: (value: string) => {},
 });
 
+export const SignContext2 = React.createContext({
+  string2: "",
+  setString2: (value: string) => {},
+});
+
 export default function App({ Component, pageProps }: AppProps) {
   
   
