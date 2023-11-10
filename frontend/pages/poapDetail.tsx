@@ -1,4 +1,8 @@
 import React from "react";
+import { useState, useEffect } from 'react';
+import {signContext} from "./login"
+
+
 
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
@@ -7,6 +11,9 @@ import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function PoapDetail() {
+
+  console.log(useLoveCompatibility()); 
+
   return (
     <section className="h-[100vh] w-full flex justify-center ">
       <div className="flex-col items-center">
@@ -33,18 +40,43 @@ export default function PoapDetail() {
           </div>
         </div>
         <div className="grid grid-cols-2 w-full ">
-          <Link href="/">
             <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
               Main Page
             </button>
-          </Link>
-          <Link href="/">
             <button className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-44 text-center">
               Talk To Telegram
             </button>
-          </Link>
         </div>
       </div>
     </section>
   );
 }
+
+export const useLoveCompatibility = async () => {
+  const [compatibilityData, setCompatibilityData] = useState<string | null>(null);
+  const { string, setString } = React.useContext(signContext);
+      try {
+        const response = await fetch('https://divineapi.com/api/1.0/get_compatibility.php', {
+          method: 'POST',
+          headers: {
+          },
+          body: new URLSearchParams({
+            sign_1: string.toLowerCase(), // Replace with your actual API key
+            sign_2: "aries",
+            api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
+          }),
+        });
+
+        if (response.ok) {
+          const data = await response.text();
+          console.log(data);
+          setCompatibilityData(data);
+        } else {
+          throw new Error(`Failed to fetch data from the API. Status: ${response.status}`);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+  return compatibilityData;
+};
+

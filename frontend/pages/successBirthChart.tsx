@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Divide } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function PersonalInfo() {
+
   return (
     <section className="h-[100vh] w-full flex justify-center ">
+      
       <div className="flex-col w-max ">
         <p className="text-3xl mb-2 text-gray-600 text-left ">
           Check Your BirthChart

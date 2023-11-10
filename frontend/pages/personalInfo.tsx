@@ -3,10 +3,16 @@ import React from "react";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import {signContext} from "./login"
+import router from "next/router";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function PersonalInfo() {
+
+  const { string, setString } = React.useContext(signContext);
+  
   return (
     <section className="h-[100vh] w-full flex justify-center ">
       <div className="flex-col items-center">
@@ -21,11 +27,13 @@ export default function PersonalInfo() {
           }}
         ></div>
         <div className="flex justify-center items-center w-full">
-          <Link href="/">
-            <button className="bg-aGreen text-white font-medium text-xl py-3 w-44 mt-4 text-center">
-              Daily Horoscope{" "}
-            </button>
-          </Link>
+          <button className="bg-aGreen text-white font-medium text-xl py-3 w-44 mt-4 text-center"
+          onClick={() => {
+            router.push("./dailyHoroscope");
+
+          }}>
+            Daily Horoscope{" "}
+          </button>
         </div>
         <div className="mt-7">
           <h2 className="mb-2 text-xl text-aGreen font-medium">
@@ -63,16 +71,12 @@ export default function PersonalInfo() {
           </div>
         </div>
         <div className="grid grid-cols-2 w-full gap-2">
-          <Link href="/">
-            <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
-              Social Graph
-            </button>
-          </Link>
-          <Link href="/">
-            <button className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-44 text-center">
-              Visit Group
-            </button>
-          </Link>
+          <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
+            Social Graph
+          </button>
+          <button className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-44 text-center">
+            Visit Group
+          </button>
         </div>
       </div>
     </section>

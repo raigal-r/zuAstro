@@ -21,9 +21,17 @@ import { CollapsableCode } from "@/components/Core";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const signContext = React.createContext({
+  string: "",
+  setString: (value: string) => {},
+});
+
+
 export function useZupassPopupMessages() {
   const [pcdStr, setPCDStr] = useState("");
   const [pendingPCDStr, setPendingPCDStr] = useState("");
+  const [signString, setSignString] = useState("");
+  const { setString } = useContext(signContext);
 
   // Listen for PCDs coming back from the Zupass popup
   useEffect(() => {
@@ -31,6 +39,19 @@ export function useZupassPopupMessages() {
       // Extensions including Metamask apparently send messages to every page. Ignore those.
       if (ev.data.encodedPCD) {
         console.log("Received PCD", ev.data.encodedPCD);
+        const parsedData = JSON.parse(ev.data.encodedPCD);
+        console.log('parsedData', parsedData)
+        if (parsedData.pcd) {
+          const pcdData = JSON.parse(parsedData.pcd);
+          if (pcdData.claim) {
+            const signedMessage = pcdData.claim.signedMessage;
+            console.log("Signed Message: ", signedMessage);
+            setString(signedMessage);
+            router.push("./personalInfo");
+          } else {
+            console.log("Unexpected PCD structure");
+          }
+        }
         setPCDStr(ev.data.encodedPCD);
       } else if (ev.data.encodedPendingPCD) {
         console.log(ev.data);

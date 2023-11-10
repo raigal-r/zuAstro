@@ -3,10 +3,16 @@ import React, {useState, useEffect} from "react";
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import router from "next/router";
+import {signContext} from "./login"
+
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function DailyHoroscope() {
+
+  const { string, setString } = React.useContext(signContext);
+
 
   const [horoscopeData, setHoroscopeData] = useState<any | null>(null);
 
@@ -18,7 +24,7 @@ export default function DailyHoroscope() {
           },
           body: new URLSearchParams({
             api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
-            sign: "ARIES",
+            sign: string,
             date: "2023-11-10",
             timezone: "1",
           }),
@@ -68,11 +74,14 @@ export default function DailyHoroscope() {
           type specimen book. It usually begins with:
         </div>
         <div className="grid grid-cols-2 justify-center items-center w-full">
-          <Link href="/">
-            <button className="bg-aGreen text-white font-medium text-xl py-3 w-44 mt-4 text-center">
+            <button className="bg-aGreen text-white font-medium text-xl py-3 w-44 mt-4 text-center"
+            onClick={() => {
+              router.push("./personalInfo");
+
+              //logInContext.logInTheme = true
+            }}>
               Main Page{" "}
             </button>
-          </Link>
           
             <button 
             className="bg-aPurple text-white font-medium text-xl py-3 w-44 mt-4 text-center"
