@@ -7,7 +7,6 @@ export const SignContext = React.createContext({
   string: "",
   setString: (value: string) => {},
 });
-navigator.serviceWorker.register('/service-worker.js');
 
 export default function App({ Component, pageProps }: AppProps) {
   
