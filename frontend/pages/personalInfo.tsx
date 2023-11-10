@@ -49,16 +49,17 @@ export default function PersonalInfo() {
     if (card) {
       if (card.emoji === "💾") {
         setString2('taurus')
+        router.push("./poapDetail")
       } else if (card.emoji === "🖱️"){
         setString2('scorpio')
+        router.push("./poapDetail")
       } else if (card.emoji === "🔧") {
         setString2('aries')
-      } else {
-
+        router.push("./poapDetail")
       }
       console.log(card.emoji);
       console.log(string2) // This will print the emoji of the card with the matching pubKeyJub
-      router.push("./poapDetail")
+      //router.push("./poapDetail")
 
     } else {
       console.log('No card found with the provided pubKey');
