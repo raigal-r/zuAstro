@@ -112,9 +112,6 @@ export default function PersonalInfo() {
           </button>
         </div>
       </div>
-      <div>
-        {pubKey}
-      </div>
     </section>
     }
     {isForeground && 
@@ -123,10 +120,10 @@ export default function PersonalInfo() {
         message="Get zodiac sign compatibility" 
         onTap={async (args: NfcCardSignMessageResult) => {
           // Handle the tap event here
-          setPubKey(args.pubKey)
+          //setPubKey(args.pubKey)
 
         }}
-/>
+      />
     </section>
     }
     </>
