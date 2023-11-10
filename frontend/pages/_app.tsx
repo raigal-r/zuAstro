@@ -3,7 +3,6 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import React, {useContext, createContext, useEffect} from "react";
 
-
 export const SignContext = React.createContext({
   string: "",
   setString: (value: string) => {},
@@ -21,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
       });
     }
   }, []);
+
 
   return (
     <SignContext.Provider value={{ string, setString }}>
