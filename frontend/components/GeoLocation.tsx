@@ -17,6 +17,7 @@ import {
 const GeoLocationComponent: React.FC = () => {
     const { coordinates, getCoordinates } = useGeoLocation();
     const [address, setAddress] = useState('');
+
   
     const handleAddressChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setAddress(event.target.value);

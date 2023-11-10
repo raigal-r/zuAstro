@@ -13,6 +13,18 @@ import Link from "next/link";
 import GeoLocationComponent from "@/components/GeoLocation";
 import router from "next/router";
 import {SignContext} from "./_app"
+import ReactSVG from 'react-svg'
+import InlineSVG from 'react-inlinesvg';
+
+interface SvgImageProps {
+  src: string;
+  alt?: string;
+}
+
+export const SvgImage: React.FC<SvgImageProps> = ({ src, alt = '' }) => {
+  return <img src={src} alt={alt} />;
+};
+
 
 
 
@@ -27,9 +39,12 @@ export default function CreateBirthChart() {
 
   const { string, setString } = React.useContext(SignContext);
 
+  const [isSVG, setIsSVG] = useState(string);
+
   useEffect(() => {
     setString(signedMessage);
     console.log('string', string)
+    
   }, [signedMessage]);
 
   useEffect(() => {
@@ -63,15 +78,10 @@ export default function CreateBirthChart() {
 
       if (response.ok) {
         const data = await response.json();
+        console.log('Response data:', data); // Add this line
         setAstroData(data);
+        setIsSVG(data.data[0].svg)
         console.log('birth chart response:',data); //The response it's a svg data
-      // response: 
-      //   {
-      //     "success": 1,
-      //     "data": [
-      //         "svg": "svg code"
-      //     ]
-      // }
       } else {
         throw new Error(`Failed to fetch data from the API. Status: ${response.status}`);
       }
@@ -158,7 +168,12 @@ export default function CreateBirthChart() {
           <p className="text-3xl mb-2 text-gray-600 text-left ">
             Check Your BirthChart
           </p>
-          <div
+          <div>
+            <p>Here should be the image</p>
+            {isSVG ? <SvgImage src={isSVG} alt="Birth Chart wheel" /> : 
+            <p>Loading...</p>}        
+          </div>
+          {/* <div
             className="bg-center h-96 my-7 "
             style={{
               backgroundImage: `url('images/birthchart.png')`,
@@ -166,7 +181,7 @@ export default function CreateBirthChart() {
               backgroundRepeat: "no-repeat",
               backgroundSize: "contain",
             }}
-          ></div>
+          ></div> */}
           <div className="grid grid-rows-2 w-full gap-2">
             <button 
             className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-full text-center"
