@@ -259,17 +259,8 @@ export default function PersonalInfo() {
                     EG
                   </div>
                   <div className="flex gap-3 py-2 px-3">
-                    <div className="flex justify-center items-center rounded-full border-aPurple border-2 h-14 w-14 text-center bg-aPurple">
-                      JM
-                    </div>
-                    <div className="flex justify-center items-center rounded-full border-aGreen border-2 h-14 w-14 text-center bg-aGreen">
-                      RC
-                    </div>
-                    <div className="flex justify-center items-center rounded-full border-aYellow border-2 h-14 w-14 text-center bg-aYellow">
-                      SJ
-                    </div>
-                  </div>
-                  </>
+                </div>
+              </>
               }
             </div>
           </div>

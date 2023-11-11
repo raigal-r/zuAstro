@@ -2,13 +2,12 @@ import React from "react";
 import { useState, useEffect } from 'react';
 import {SignContext, SignContext2} from "./_app"
 import router from "next/router";
-
-
-
+import { useAccount, useConnect } from 'wagmi'
 
 import { Inter } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,6 +17,9 @@ export default function PoapDetail() {
   const { string, setString } = React.useContext(SignContext);
   const { string2, setString2 } = React.useContext(SignContext2);
   const [response, setResponse] = useState<string | null>(null);
+
+  const { connector: activeConnector, isConnected } = useAccount()
+  const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
 
   const [elements, setElements] = useState('');
   const [idealDate, setIdealDate] = useState('');
@@ -47,10 +49,10 @@ export default function PoapDetail() {
               headers: {
               },
               body: new URLSearchParams({
-                sign_1: string.toLowerCase(), // Replace with your actual API key
-                sign_2: string2.toLowerCase(),
-                // sign_1: 'taurus',
-                // sign_2: 'capricorn',
+                //sign_1: string.toLowerCase(), // Replace with your actual API key
+                //sign_2: string2.toLowerCase(),
+                sign_1: 'taurus',
+                sign_2: 'capricorn',
                 api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
               }),
             });
@@ -70,14 +72,14 @@ export default function PoapDetail() {
               setPositiveAspects(positive_aspects);
               const overall_compatibility = data.data.overall_compatibility;
               setOverallCompatibility(overall_compatibility);
-              const overall_compatibility_short = data.data.overall_compatibility.split('.')[0];
+              const overall_compatibility_short = data.data.overall_compatibility.split('.')[0]
               setOverallCompatibilityShort(overall_compatibility_short);
-              const friendship_score = data.data.score.communication;
+              const friendship_score = data.data.score 
               setFriendshipScore(friendship_score);
-              const general_score = data.data.score.general
+              const general_score = data.data.score  
               setGeneralScore(general_score);
-              const love_score = data.data.score.sex;
-              setLoveScore(convertToLetterGrade(love_score));
+              const love_score = convertToLetterGrade(data.data.score.sex)
+              setLoveScore(love_score);
               //console.log(data);
               setCompatibilityData(data)
             } else {
@@ -116,6 +118,22 @@ export default function PoapDetail() {
             {`${elements}`}
           </div>
         </div>
+
+        <div>
+          { parseFloat(loveScore) > 9 && 
+          <>
+            {!isConnected &&
+              <ConnectButton />
+              }
+            {isConnected &&
+              <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
+                Mint Poap            
+              </button>
+            }
+          </>
+          }
+        </div>
+
         <div className="grid grid-cols-2 w-full ">
             <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center"
                 onClick={() => router.push("./personalInfo")}
@@ -145,7 +163,7 @@ export const useLoveCompatibility = async () => {
             //sign_1: string.toLowerCase(), // Replace with your actual API key
             //sign_2: string2.toLowerCase(),
             sign_1: 'taurus',
-            sign_2: 'aries',
+            sign_2: 'taurus',
             api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
           }),
         });
