@@ -70,7 +70,7 @@ export default function DailyHoroscope() {
   }, []);
 
   return (
-    <section className="h-[100vh] w-full flex justify-center gap-10 ">
+    <section className="h-full w-full flex justify-center gap-10 ">
       <div className="flex-col w-full h-full items-start ">
         <div className="flex-col">
           <h1 className="text-3xl mb-2 text-gray-600">Daily Horoscope</h1>
