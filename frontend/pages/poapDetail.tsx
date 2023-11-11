@@ -111,27 +111,28 @@ export default function PoapDetail() {
         <h1 className="text-center text-lg mb-4 text-gray-600">
           Matched : Nov 11th, 2023
         </h1>
+        <div>
+          { loveScore === 'A' && 
+          <>
+            {!isConnected &&
+              <ConnectButton />
+              }
+            {isConnected &&
+            <div className="grid grid-cols-1 w-full ">
+              <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
+                Mint Poap            
+              </button>
+            </div>
+            }
+          </>
+          }
+        </div>
 
         <div className="mt-7">
           <h2 className="mb-2 text-xl text-aGreen font-medium">Advice</h2>
           <div className="w-full border-2 border-aGreen h-38 text-gray-600 p-2 ">
             {`${elements}`}
           </div>
-        </div>
-
-        <div>
-          { parseFloat(loveScore) > 9 && 
-          <>
-            {!isConnected &&
-              <ConnectButton />
-              }
-            {isConnected &&
-              <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
-                Mint Poap            
-              </button>
-            }
-          </>
-          }
         </div>
 
         <div className="grid grid-cols-2 w-full ">
