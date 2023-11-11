@@ -40,7 +40,6 @@ export default function CreateBirthChart() {
   const [year, setYear] = useState("");
   const [hour, setHour] = useState("");
 
-
   const [astroData, setAstroData] = useState<{
     success: number;
     data: { svg: string }[];
@@ -51,8 +50,7 @@ export default function CreateBirthChart() {
   const { string, setString } = React.useContext(SignContext);
 
   const [isSVG, setIsSVG] = useState(string);
-  const cleanedSvgString= '';
-
+  const cleanedSvgString = "";
 
   useEffect(() => {
     setString(signedMessage);
@@ -65,7 +63,7 @@ export default function CreateBirthChart() {
 
   useEffect(() => {
     const cleanedSvgString = isSVG.replace(/\n/g, "").replace(/\\'/g, "'");
-  }, [isSVG])
+  }, [isSVG]);
 
   const handleInputChange = (
     param: "day" | "month" | "year" | "hour",
@@ -234,7 +232,7 @@ export default function CreateBirthChart() {
             <p className="text-3xl mb-2 text-gray-600 text-left ">
               Check Your BirthChart
             </p>
-             < SvgComponent svgString={isSVG} />
+            <SvgComponent svgString={isSVG} />
             {/* <div
               className="bg-center h-96 my-7 "
               style={{
@@ -261,7 +259,7 @@ export default function CreateBirthChart() {
                 //onClick={() => addSignatureProofPCD('libra')}>
                 onClick={() => addSignatureProofPCD(signedMessage)}
               >
-                Save Your Birthchart
+                Save Your Birth Chart To Zupass
               </button>
 
               <button
@@ -441,7 +439,7 @@ async function addSignatureProofPCD(messageToSign: string) {
   sendZupassRequest(proofUrl);
 }
 
-const SvgComponent = ({ svgString }: {svgString: string}) => {
+const SvgComponent = ({ svgString }: { svgString: string }) => {
   // Replace newlines and potential other formatting characters
   const cleanedSvgString = svgString.replace(/\n/g, "").replace(/\\'/g, "'");
 
