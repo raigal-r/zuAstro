@@ -1,39 +1,43 @@
 # ZuAstro
 
-** morning - NFC cards** (Andrew) - 3 cards + variable(sign / emoji)
-
 ## Todos
 
-- [x] font family (morning) - joy
+- [ ] font family - joy
 - [ ] button padding
 
-/createBirthCahrt => morning(joy)
+/createBirthCahrt
 
-- [ ] form calendar - day, month, year
-- [ ] Fix UI
+- [x] form calendar - day, month, year
+- [x] Fix UI
 - [ ] Success Toast
 
-/successBirthChart => morning(joy)
+/successBirthChart
 
-- [ ] download feature (option)
-- [ ] Toast Message
+- [x] Fix hardcoded Input(RC)
+- [ ] Success Toast Message(Joy)
 
 /loading
 
-- [ ] Loading animations with Stars
+- [ ] Timer (RC)
+- [ ] Loading animations with Stars (Joy)
 
 /poapDetail
 
-- [ ] wallet connect
+- [x] wallet connect
 - [ ] generate POAP
 
 /Header
 
-/login
+/login (Done)
 
 /personalInfo
 
-/dailyHoroscope
+- [x] User Name / Horoscope Images
+- [ ] POAP => option High Score(A) => Show Very Special Image(POAP or NFT)
+- [x] Connect Wallet
+- [ ] Fix UI height
+
+/dailyHoroscope(Done)
 
 /createNFC
 
@@ -49,8 +53,8 @@ Join Telegram
 
 Recording Demo
 
-- [ ]
+- [ ] with Voice Over
 
-Presentation Deck (afternoon - joy)
+Presentation Deck
 
-- [ ]
+- [ ] Submission Form

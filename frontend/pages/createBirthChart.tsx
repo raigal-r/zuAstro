@@ -19,7 +19,6 @@ import { SignContext } from "./_app";
 import tzlookup from "tz-lookup";
 import { utcToZonedTime, format } from "date-fns-tz";
 
-
 interface SvgImageProps {
   src: string;
   alt?: string;
@@ -44,8 +43,10 @@ export default function CreateBirthChart() {
   const [year, setYear] = useState("");
   const [hour, setHour] = useState("");
 
-  const [coordinates, setCoordinates] = useState<{ lat: number; lng: number } | null>(null);
-
+  const [coordinates, setCoordinates] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
 
   const [astroData, setAstroData] = useState<{
     success: number;
@@ -57,8 +58,7 @@ export default function CreateBirthChart() {
   const { string, setString } = React.useContext(SignContext);
 
   const [isSVG, setIsSVG] = useState(string);
-  const cleanedSvgString= '';
-
+  const cleanedSvgString = "";
 
   useEffect(() => {
     setString(signedMessage);
@@ -71,7 +71,7 @@ export default function CreateBirthChart() {
 
   useEffect(() => {
     const cleanedSvgString = isSVG.replace(/\n/g, "").replace(/\\'/g, "'");
-  }, [isSVG])
+  }, [isSVG]);
 
   const handleInputChange = (
     param: "day" | "month" | "year" | "hour",
@@ -89,15 +89,15 @@ export default function CreateBirthChart() {
     }
   };
 
-  let timezone = tzlookup(Number(coordinates?.lat) || 0, Number(coordinates?.lng) || 0);
+  let timezone = tzlookup(
+    Number(coordinates?.lat) || 0,
+    Number(coordinates?.lng) || 0
+  );
   let dateInTimezone = utcToZonedTime(new Date(), timezone);
   let offsetMinutes = dateInTimezone.getTimezoneOffset();
   let offsetHours = offsetMinutes / 60;
 
   const createBirthChartImage = async () => {
-
-    
-
     try {
       const response = await fetch(
         "https://astroapi-4.divineapi.com/western-api/v1/natal-wheel-chart",
@@ -227,7 +227,8 @@ export default function CreateBirthChart() {
             <div className=" text-[1.11rem] w-full">
               Fill Out Your Birth Location
             </div>
-            <GeoLocationComponent setCoordinates={setCoordinates} />          </div>
+            <GeoLocationComponent setCoordinates={setCoordinates} />{" "}
+          </div>
           <div className="grid w-full ">
             <button
               className=" py-4 text-center bg-aGreen text-white mt-10"
@@ -247,22 +248,21 @@ export default function CreateBirthChart() {
             <p className="text-3xl mb-2 text-gray-600 text-left ">
               Check Your BirthChart
             </p>
-             < SvgComponent svgString={isSVG} />
-          
+            <SvgComponent svgString={isSVG} />
+
             <div className="grid grid-rows-2 w-full gap-2">
               <button
                 className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-full text-center"
                 //onClick={() => addSignatureProofPCD('libra')}>
                 onClick={() => addSignatureProofPCD(signedMessage)}
               >
-                Save Your Birthchart
+                Save Your Birth Chart To Zupass
               </button>
 
               <button
                 className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-full text-center"
                 onClick={() => {
                   router.push("./personalInfo");
-
                 }}
               >
                 Main Page
@@ -434,7 +434,7 @@ async function addSignatureProofPCD(messageToSign: string) {
   sendZupassRequest(proofUrl);
 }
 
-const SvgComponent = ({ svgString }: {svgString: string}) => {
+const SvgComponent = ({ svgString }: { svgString: string }) => {
   // Replace newlines and potential other formatting characters
   const cleanedSvgString = svgString.replace(/\n/g, "").replace(/\\'/g, "'");
 
