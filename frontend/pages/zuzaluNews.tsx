@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import { Inter } from "next/font/google";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+
 import router from "next/router";
-import { SignContext } from "./_app";
 
 const inter = Inter({ subsets: ["latin"] });
 

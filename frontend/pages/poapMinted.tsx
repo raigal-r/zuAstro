@@ -1,34 +1,31 @@
 import React, { useState } from "react";
 
 import { Inter } from "next/font/google";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Divide } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function PersonalInfo() {
+export default function PoapMinted() {
   return (
     <section className="h-[100vh] w-full flex justify-center ">
       <div className="flex-col w-max ">
         <p className="text-3xl mb-2 text-gray-600 text-left bg-fontFamily-josefin-0 ">
-          Check Your BirthChart
+          Check Your Special POAP
         </p>
         <div
           className="bg-center h-96 my-7"
           style={{
-            backgroundImage: `url('images/birthchart.png')`,
+            backgroundImage: `url('images/poap.png')`,
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
           }}
         ></div>
         <div className="grid grid-rows-2 w-full gap-2">
-          <Link href="/">
-            <button className="bg-aGreen text-white font-medium text-xl py-4 mt-4 w-full text-center">
-              Save Your Birthchart
-            </button>
-          </Link>
+          <div className="text-xl text-center font-bold text-red-600">
+            Congrautration!!!
+            <br /> You Have Earned a Special ZuAsto POAP Reward!
+          </div>
           <Link href="/">
             <button className="bg-aPurple text-white font-medium text-xl py-4 mt-4 w-full text-center">
               Main Page
