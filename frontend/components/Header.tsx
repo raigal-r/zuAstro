@@ -1,3 +1,4 @@
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Link from "next/link";
 
 export const Header = () => {
@@ -12,6 +13,9 @@ export const Header = () => {
           backgroundSize: "contain",
         }}
       ></div>
+      <div className="">
+        <ConnectButton  />
+      </div> 
     </header>
   );
 };

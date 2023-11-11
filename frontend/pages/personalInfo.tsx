@@ -9,6 +9,11 @@ import { NfcCardSignMessageResult, getMessageHash } from "jubmoji-api";
 import Modal from "../components/Modal";
 import { bigIntToHex } from "babyjubjub-ecdsa";
 import { execHaloCmdWeb } from "@arx-research/libhalo/api/web.js";
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
+import { useAccount, useConnect } from 'wagmi'
+
+
 
 import {
   NUniqueJubmojiInCollectionProof,
@@ -17,6 +22,7 @@ import {
   CardPubKey,
   cardPubKeys
 } from "jubmoji-api";
+import { WagmiConfig } from "wagmi";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,9 +34,12 @@ export type ForegroundTapModalProps = {
 
 export default function PersonalInfo() {
 
+
   const { string, setString } = React.useContext(SignContext);
   const { string2, setString2 } = React.useContext(SignContext2);
 
+  const { connector: activeConnector, isConnected } = useAccount()
+  const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
 
   const [isForeground, setIsForeground] = useState(false)
 
@@ -77,16 +86,141 @@ export default function PersonalInfo() {
     {!isForeground && 
     <section className="h-[100vh] w-full flex justify-center ">
       <div className="flex-col items-center">
-        <h1 className="text-3xl mb-1 text-gray-600 text-center">0xDonald</h1>
-        <div
+        <h1 className="text-3xl mb-1 text-gray-600 text-center">0xAnon</h1>
+        { string.toLocaleLowerCase() === 'leo' &&
+            <div
+            className="bg-center h-72 m-7 "
+            style={{
+              backgroundImage: `url('images/leo-icon.png')`,
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "contain",
+            }}
+          ></div>
+        }
+        { string.toLocaleLowerCase() === 'aquarius' && 
+          <div
           className="bg-center h-72 m-7 "
           style={{
-            backgroundImage: `url('images/leo.png')`,
+            backgroundImage: `url('images/aquarius-icon.png')`,
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
           }}
         ></div>
+        }
+        { string.toLocaleLowerCase() === 'aries' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/aries-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'cancer' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/cancer-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'capricorn' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/capricorn-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'gemini' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/gemini-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'pisces' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/pisces-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'sagittarius' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/sagittarius-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'scorpio' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/scorpio-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'taurus' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/taurus-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+        { string.toLocaleLowerCase() === 'libra' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/libra-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+         { string.toLocaleLowerCase() === 'virgo' && 
+          <div
+          className="bg-center h-72 m-7 "
+          style={{
+            backgroundImage: `url('images/virgo-icon.png')`,
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "contain",
+          }}
+        ></div>
+        }
+
+        
         <div className="flex justify-center items-center w-full">
           <button className="bg-aGreen text-white font-medium text-xl py-3 w-44 mt-4 text-center"
           onClick={() => {
@@ -102,38 +236,41 @@ export default function PersonalInfo() {
             Check Compatibility{" "}
           </button>
         </div>
-        <div className="mt-7">
+        <div className="mt-7"> 
           <h2 className="my-4 text-xl text-aGreen font-medium">
             Your POAP List
           </h2>
           <div className="w-full border-2 border-aGreen h-38 ">
             <div className="flex gap-3 py-2 px-3">
-              <div className="flex justify-center items-center rounded-full border-aPurple border-2 h-14 w-14 text-center bg-aPurple">
-                JM
-              </div>
-              <div className="flex justify-center items-center rounded-full border-aGreen border-2 h-14 w-14 text-center bg-aGreen">
-                RC
-              </div>
-              <div className="flex justify-center items-center rounded-full border-aYellow border-2 h-14 w-14 text-center bg-aYellow">
-                SJ
-              </div>
-              <div className="flex justify-center items-center rounded-full border-aPurple border-2 h-14 w-14 text-center bg-aPurple">
-                GU
-              </div>
-              <div className="flex justify-center items-center rounded-full border-aGreen border-2 h-14 w-14 text-center bg-aGreen">
-                EG
-              </div>
-            </div>
-            <div className="flex gap-3 py-2 px-3">
-              <div className="flex justify-center items-center rounded-full border-aPurple border-2 h-14 w-14 text-center bg-aPurple">
-                JM
-              </div>
-              <div className="flex justify-center items-center rounded-full border-aGreen border-2 h-14 w-14 text-center bg-aGreen">
-                RC
-              </div>
-              <div className="flex justify-center items-center rounded-full border-aYellow border-2 h-14 w-14 text-center bg-aYellow">
-                SJ
-              </div>
+              {!isConnected && 
+                <ConnectButton />
+              }
+              {isConnected && 
+                <>
+                  <div className="flex justify-center items-center rounded-full border-aPurple border-2 h-14 w-14 text-center bg-aPurple">
+                    JM
+                  </div><div className="flex justify-center items-center rounded-full border-aGreen border-2 h-14 w-14 text-center bg-aGreen">
+                    RC
+                  </div><div className="flex justify-center items-center rounded-full border-aYellow border-2 h-14 w-14 text-center bg-aYellow">
+                    SJ
+                  </div><div className="flex justify-center items-center rounded-full border-aPurple border-2 h-14 w-14 text-center bg-aPurple">
+                    GU
+                  </div><div className="flex justify-center items-center rounded-full border-aGreen border-2 h-14 w-14 text-center bg-aGreen">
+                    EG
+                  </div>
+                  <div className="flex gap-3 py-2 px-3">
+                    <div className="flex justify-center items-center rounded-full border-aPurple border-2 h-14 w-14 text-center bg-aPurple">
+                      JM
+                    </div>
+                    <div className="flex justify-center items-center rounded-full border-aGreen border-2 h-14 w-14 text-center bg-aGreen">
+                      RC
+                    </div>
+                    <div className="flex justify-center items-center rounded-full border-aYellow border-2 h-14 w-14 text-center bg-aYellow">
+                      SJ
+                    </div>
+                  </div>
+                  </>
+              }
             </div>
           </div>
         </div>

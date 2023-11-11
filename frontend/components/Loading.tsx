@@ -19,16 +19,27 @@ import { zuPassLogIn } from "../pages/login";
 
 const Loading = () => {
   const logInContext = useContext(zuPassLogIn);
+  const splashScreenDuration = 2000;
+  const [isVisible, setIsVisible] = useState(true);
+
 
   useEffect(() => {
-    router.push("./login");
+    // Hide the splash screen after the specified duration
+    const timeout = setTimeout(() => {
+      setIsVisible(false);
+    }, splashScreenDuration);
 
-    if (!logInContext.logInTheme) {
+    // Clear the timeout if the component unmounts
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, );
+
+  useEffect(() => {
+    if (!isVisible) {
       router.push("./login");
-    } else {
-      router.push("./personalInfo");
-    }
-  }, []);
+    } 
+  }, [isVisible]);
 
   return (
     <section className="h-[100vh] w-full flex justify-center items-center bg-[#F7EEE1]">

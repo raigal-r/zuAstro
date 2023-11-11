@@ -16,6 +16,9 @@ import { SignContext } from "./_app";
 // import ReactSVG from "react-svg";
 // import InlineSVG from "react-inlinesvg";
 
+import tzlookup from "tz-lookup";
+import { utcToZonedTime, format } from "date-fns-tz";
+
 interface SvgImageProps {
   src: string;
   alt?: string;
@@ -39,6 +42,11 @@ export default function CreateBirthChart() {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [hour, setHour] = useState("");
+
+  const [coordinates, setCoordinates] = useState<{
+    lat: number;
+    lng: number;
+  } | null>(null);
 
   const [astroData, setAstroData] = useState<{
     success: number;
@@ -81,6 +89,14 @@ export default function CreateBirthChart() {
     }
   };
 
+  let timezone = tzlookup(
+    Number(coordinates?.lat) || 0,
+    Number(coordinates?.lng) || 0
+  );
+  let dateInTimezone = utcToZonedTime(new Date(), timezone);
+  let offsetMinutes = dateInTimezone.getTimezoneOffset();
+  let offsetHours = offsetMinutes / 60;
+
   const createBirthChartImage = async () => {
     try {
       const response = await fetch(
@@ -93,18 +109,18 @@ export default function CreateBirthChart() {
           },
           body: new URLSearchParams({
             api_key: "b8c27b7a1c450ffdacb31483454e0b54",
-            full_name: "Raquel Carrasco",
-            place: "Arenys de Mar, Spain",
+            full_name: "Anon",
+            place: "Narnia",
             gender: "female",
             day: day.toString().toLowerCase(),
             month: month.toString().toLowerCase(),
             year: year.toString().toLowerCase(),
             hour: hour.toString().toLowerCase(),
             min: "00",
-            sec: "43",
-            lon: "2.5346498", // This needs to change, not hard coded
-            lat: "41.5783288",
-            tzone: "1",
+            sec: "00",
+            lon: coordinates?.lng?.toString() || "",
+            lat: coordinates?.lat?.toString() || "",
+            tzone: offsetHours.toString(),
           }),
         }
       );
@@ -144,10 +160,10 @@ export default function CreateBirthChart() {
             min: "00",
             sec: "43",
             gender: "female",
-            place: "Arenys de Mar, Spain",
-            lon: "2.5346", // This needs to change, not hard coded
-            lat: "41.5783",
-            tzone: "1",
+            place: "Narnia",
+            lon: coordinates?.lng?.toString() || "",
+            lat: coordinates?.lat?.toString() || "",
+            tzone: offsetHours.toString(),
           }),
         }
       );
@@ -211,7 +227,7 @@ export default function CreateBirthChart() {
             <div className=" text-[1.11rem] w-full">
               Fill Out Your Birth Location
             </div>
-            <GeoLocationComponent />
+            <GeoLocationComponent setCoordinates={setCoordinates} />{" "}
           </div>
           <div className="grid w-full ">
             <button
@@ -233,26 +249,7 @@ export default function CreateBirthChart() {
               Check Your BirthChart
             </p>
             <SvgComponent svgString={isSVG} />
-            {/* <div
-              className="bg-center h-96 my-7 "
-              style={{
-                backgroundImage: `url('images/birthchart.png')`,
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundSize: "contain",
-              }}
-            ></div> */}
-            {/* <div>
-              <div>
-                {astroData &&
-                  astroData.data.map((item, index) => (
-                    <div
-                      key={index}
-                      dangerouslySetInnerHTML={{ __html: item.svg }}
-                    />
-                  ))}
-              </div>
-            </div> */}
+
             <div className="grid grid-rows-2 w-full gap-2">
               <button
                 className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-full text-center"
@@ -266,8 +263,6 @@ export default function CreateBirthChart() {
                 className="bg-aPurple text-white font-medium text-xl py-3 mt-4 w-full text-center"
                 onClick={() => {
                   router.push("./personalInfo");
-
-                  //logInContext.logInTheme = true
                 }}
               >
                 Main Page

@@ -33,10 +33,10 @@ export default function DailyHoroscope() {
           },
           body: new URLSearchParams({
             api_key: 'b8c27b7a1c450ffdacb31483454e0b54',
-            //sign: string.toLowerCase(),
-            sign: string,
+            sign: string.toLowerCase(),
+            //sign: string,
             date: new Date().toISOString().slice(0,10),
-            timezone: "1",
+            timezone: "0",
           }),
         });
 

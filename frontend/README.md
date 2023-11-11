@@ -2,7 +2,7 @@
 
 ## Todos
 
-- [x] font family (morning) - joy
+- [ ] font family - joy
 - [ ] button padding
 
 /createBirthCahrt
@@ -13,7 +13,7 @@
 
 /successBirthChart
 
-- [ ] Fix hardcoded Input(RC)
+- [x] Fix hardcoded Input(RC)
 - [ ] Success Toast Message(Joy)
 
 /loading
@@ -23,7 +23,7 @@
 
 /poapDetail
 
-- [ ] wallet connect
+- [x] wallet connect
 - [ ] generate POAP
 
 /Header
@@ -32,9 +32,9 @@
 
 /personalInfo
 
-- [ ] User Name / Horoscope Images
-- [ ] POAP\* => option High Score(A) => Show Very Special Image(POAP or NFT)
-- [ ] Connect Wallet
+- [x] User Name / Horoscope Images
+- [ ] POAP => option High Score(A) => Show Very Special Image(POAP or NFT)
+- [x] Connect Wallet
 - [ ] Fix UI height
 
 /dailyHoroscope(Done)
@@ -53,8 +53,8 @@ Join Telegram
 
 Recording Demo
 
-- [ ]
+- [ ] with Voice Over
 
-Presentation Deck (afternoon - joy)
+Presentation Deck
 
-- [ ]
+- [ ] Submission Form
