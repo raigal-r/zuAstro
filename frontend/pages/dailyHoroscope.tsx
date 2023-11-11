@@ -94,8 +94,15 @@ export default function DailyHoroscope() {
             Main Page{" "}
           </button>
 
-          <button className="bg-aPurple text-white font-medium text-xl py-3 mt-4 text-center">
-            Share with Group{" "}
+          <button
+            className="bg-aPurple text-white font-medium text-xl py-3 mt-4 text-center"
+            onClick={() => {
+              router.push("./zuzaluNews");
+
+              //logInContext.logInTheme = true
+            }}
+          >
+            Zuzalu News
           </button>
         </div>
       </div>
