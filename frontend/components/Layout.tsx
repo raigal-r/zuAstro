@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children, title }) => {
   const path = usePathname();
 
   return (
-    <div className="flex flex-col flex-grow min-h-screen  max-h-screen bg-[#F7EEE1] w-full  p-6 ">
+    <div className="flex flex-col flex-grow  bg-[#F7EEE1] w-full  p-6 ">
       <Head>
         <title>{title}</title>
       </Head>

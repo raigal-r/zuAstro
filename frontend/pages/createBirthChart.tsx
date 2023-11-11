@@ -186,7 +186,7 @@ export default function CreateBirthChart() {
     }
   };
   return (
-    <section className="h-full w-full">
+    <section className="h-full min-h-screen w-full">
       {!signReportData && (
         <div className=" flex-col  text-gray-600">
           <div className="flex flex-col ">
