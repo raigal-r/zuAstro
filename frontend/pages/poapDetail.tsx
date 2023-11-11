@@ -123,7 +123,9 @@ export default function PoapDetail() {
               {!isConnected && <ConnectButton />}
               {isConnected && (
                 <div className="grid grid-cols-1 w-full ">
-                  <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center">
+                  <button className="bg-aGreen text-white font-medium text-xl py-3 mt-4 w-44  text-center"
+                      onClick={() => router.push("./poapMinted")}
+                  >
                     Mint Poap
                   </button>
                 </div>

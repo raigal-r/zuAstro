@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import router from "next/router";
+
 
 import { Inter } from "next/font/google";
 import Link from "next/link";
@@ -26,11 +28,11 @@ export default function PoapMinted() {
             Congrautration!!!
             <br /> You Have Earned a Special ZuAsto POAP Reward!
           </div>
-          <Link href="/">
-            <button className="bg-aPurple text-white font-medium text-xl py-4 mt-4 w-full text-center">
+            <button className="bg-aPurple text-white font-medium text-xl py-4 mt-4 w-full text-center"
+                onClick={() => router.push("./personalInfo")}
+              >
               Main Page
             </button>
-          </Link>
         </div>
 
         <div className="grid grid-cols-2 w-full gap-2"></div>
