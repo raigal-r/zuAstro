@@ -53,9 +53,9 @@ export default function PoapDetail() {
             headers: {},
             body: new URLSearchParams({
               sign_1: string.toLowerCase(), // Replace with your actual API key
-              sign_2: string2.toLowerCase(),
+              //sign_2: string2.toLowerCase(),
               //sign_1: "taurus",
-              //sign_2: "capricorn",
+              sign_2: "taurus",
               api_key: "b8c27b7a1c450ffdacb31483454e0b54",
             }),
           }
@@ -106,7 +106,7 @@ export default function PoapDetail() {
     <section className="flex flex-grow h-full w-full  justify-center ">
       <div className="flex-col items-center">
         <div className="flex-col">
-          <p className="text-3xl mb-2 text-gray-600">{`${string.toUpperCase()} and ${string2.toUpperCase()}`}</p>
+          <p className="text-3xl mb-2 text-gray-600">{`${string.toUpperCase()} and TAURUS`}</p>
           <p className="text-center font-bold text-[1.11rem] my-4 text-aPurple w-full">
             {`${overallCompatibilityShort}.`}
           </p>
