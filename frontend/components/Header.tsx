@@ -13,9 +13,9 @@ export const Header = () => {
           backgroundSize: "contain",
         }}
       ></div>
-      <div className="">
-        <ConnectButton  />
-      </div> 
+      {/* <div className="flex justify-end mt-4">
+        <ConnectButton />
+      </div> */}
     </header>
   );
 };
